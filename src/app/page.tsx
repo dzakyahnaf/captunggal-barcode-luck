@@ -147,7 +147,7 @@ export default function HomePage() {
             listStyleType: "decimal",
             margin: 0,
           }}>
-            <li>Follow <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> and win gold.</li>
+            <li>Follow <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> and win free coffee a year.</li>
             <li>Enter your phone number below to participate.</li>
           </ol>
         </div>
