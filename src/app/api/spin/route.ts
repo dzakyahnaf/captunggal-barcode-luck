@@ -7,9 +7,15 @@ export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { phone } = body as { phone?: string };
+    const { name, phone } = body as { name?: string; phone?: string };
 
     // --- Validate input ---
+    if (!name || name.trim().length < 2) {
+      return NextResponse.json(
+        { error: "Nama lengkap tidak valid." },
+        { status: 400 }
+      );
+    }
     if (!phone || phone.trim().length < 9) {
       return NextResponse.json(
         { error: "Nomor WhatsApp tidak valid." },
@@ -65,6 +71,7 @@ export async function POST(req: NextRequest) {
       .insert({
         identifier,
         ip_address: ip,
+        name: name.trim(),
         won,
       })
       .select("id")
@@ -85,6 +92,7 @@ export async function POST(req: NextRequest) {
 
       while (attempts < 5) {
         const candidate = generateUniqueCode();
+
         const { error: codeError } = await supabase
           .from("winner_codes")
           .insert({
@@ -106,14 +114,20 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      return NextResponse.json({ won: true, code }, { status: 200 });
+      return NextResponse.json(
+        { won: true, code, redirectUrl: `/result-rev?won=true&code=${code}` },
+        { status: 200 }
+      );
     }
 
     // --- If loser: return redirect URL ---
     const redirectUrl =
       process.env.INSTAGRAM_REDIRECT_URL || "https://instagram.com/rakkencoffee";
 
-    return NextResponse.json({ won: false, redirectUrl }, { status: 200 });
+    return NextResponse.json(
+      { won: false, redirectUrl: `/result-rev?won=false&redirect=${encodeURIComponent(redirectUrl)}` },
+      { status: 200 }
+    );
   } catch (err) {
     console.error("Spin error:", err instanceof Error ? err.message : err);
     console.error("Env check - SUPABASE_URL:", !!process.env.NEXT_PUBLIC_SUPABASE_URL);
