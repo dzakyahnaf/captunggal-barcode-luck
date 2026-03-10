@@ -134,7 +134,7 @@ export default function HomePage() {
           }}
         >
           {/* ===== LOGO ===== */}
-          <div style={{ marginBottom: "1.75rem" }}>
+          <div style={{ marginBottom: "0.25rem" }}>
             <Image
               src="/images/logo-rakken.png"
               alt="Rakken Coffee"
@@ -146,7 +146,7 @@ export default function HomePage() {
           </div>
 
           {/* ===== TAGLINE ===== */}
-          <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+          <div style={{ textAlign: "center", marginBottom: "1rem" }}>
             <p
               style={{
                 color: "#F2F2F2",
@@ -162,10 +162,10 @@ export default function HomePage() {
               <p
                 style={{
                   color: "#fde68a",
-                  fontSize: "0.85rem",
+                  fontSize: "1.15rem",
                   fontWeight: 600,
                   textShadow: "0 0 10px rgba(252,211,77,0.3)",
-                  margin: "0.5rem 0",
+                  margin: "2.5rem 0 4rem",
                 }}
               >
                 🎉 Selamat kamu orang ke {scanCount.toLocaleString("id-ID")}{" "}
@@ -179,7 +179,7 @@ export default function HomePage() {
                 fontWeight: 400,
               }}
             >
-              Menangkan Free Coffee selama 1 Tahun!
+              Menangkan free coffee a year!
             </p>
           </div>
 
