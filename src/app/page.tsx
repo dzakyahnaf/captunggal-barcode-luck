@@ -168,8 +168,8 @@ export default function HomePage() {
                   margin: "0.5rem 0",
                 }}
               >
-                🎉 Sudah {scanCount.toLocaleString("id-ID")} orang yang scan QR
-                ini!
+                🎉 Selamat kamu orang ke {scanCount.toLocaleString("id-ID")}{" "}
+                yang sudah scan QR ini!
               </p>
             )}
             <p
