@@ -6,7 +6,6 @@ import { Instagram, Coffee, Gift, Ticket, ChevronRight } from "lucide-react";
 
 function ResultContent() {
   const searchParams = useSearchParams();
-  const scanOrder = searchParams.get("scanOrder");
   const [countdown, setCountdown] = useState(20);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ function ResultContent() {
         style={{ maxWidth: "400px", gap: "1.25rem" }}
       >
         {/* Header Icon */}
-        <div
+        {/* <div
           style={{
             width: "3.5rem",
             height: "3.5rem",
@@ -80,26 +79,13 @@ function ResultContent() {
           }}
         >
           <span style={{ fontSize: "1.5rem" }}>🎉</span>
-        </div>
+        </div> */}
 
         {/* Title */}
         <div
           className="text-center"
           style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}
         >
-          {scanOrder && (
-            <p
-              style={{
-                color: "#fde68a",
-                fontSize: "0.9rem",
-                fontWeight: 600,
-                textShadow: "0 0 10px rgba(252,211,77,0.3)",
-                marginBottom: "0.25rem",
-              }}
-            >
-              🎉 Selamat! Kamu orang ke-{scanOrder} yang sudah scan QR ini
-            </p>
-          )}
           <h1
             className="font-pottred"
             style={{
@@ -131,11 +117,11 @@ function ResultContent() {
           >
             <div
               style={{
-                background: "rgba(252,211,77,0.15)",
-                color: "#fde68a",
+                background: "rgba(255,255,255,0.1)",
+                color: "#F2F2F2",
                 padding: "0.4rem",
                 borderRadius: "0.5rem",
-                border: "1px solid rgba(252,211,77,0.3)",
+                border: "1px solid rgba(255,255,255,0.15)",
               }}
             >
               <Coffee size={20} />
@@ -194,7 +180,7 @@ function ResultContent() {
                   lineHeight: 1.2,
                 }}
               >
-                Ratusan Merchandise
+                Ratusan Merchandise RAKKEN
               </p>
               <p
                 style={{
@@ -239,7 +225,7 @@ function ResultContent() {
                   lineHeight: 1.2,
                 }}
               >
-                Voucher Eksklusif Rakken
+                Voucher Eksklusif RAKKEN
               </p>
               <p
                 style={{

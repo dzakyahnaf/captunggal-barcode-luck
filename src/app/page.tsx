@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Smartphone, ChevronRight, Instagram, ChevronDown } from "lucide-react";
 import Image from "next/image";
 
@@ -19,8 +19,16 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [alreadyPlayed, setAlreadyPlayed] = useState(false);
+  const [scanCount, setScanCount] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const section2Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetch("/api/scan-count", { method: "POST" })
+      .then((res) => res.json())
+      .then((data) => setScanCount(data.count))
+      .catch(() => {});
+  }, []);
 
   const validatePhone = (p: string) => {
     const cleaned = p.replace(/\D/g, "");
@@ -150,6 +158,20 @@ export default function HomePage() {
             >
               Your New Everyday Ritual in Sips and Bites
             </p>
+            {scanCount !== null && scanCount > 0 && (
+              <p
+                style={{
+                  color: "#fde68a",
+                  fontSize: "0.85rem",
+                  fontWeight: 600,
+                  textShadow: "0 0 10px rgba(252,211,77,0.3)",
+                  margin: "0.5rem 0",
+                }}
+              >
+                🎉 Sudah {scanCount.toLocaleString("id-ID")} orang yang scan QR
+                ini!
+              </p>
+            )}
             <p
               style={{
                 color: "rgba(255,255,255,0.7)",
