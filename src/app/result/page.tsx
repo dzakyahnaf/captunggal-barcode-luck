@@ -90,14 +90,14 @@ function ResultContent() {
             className="font-pottred"
             style={{
               color: "#FFFFFF",
-              fontSize: "1.5rem",
+              fontSize: "3.0rem",
               lineHeight: 1.1,
               textShadow: "0 2px 10px rgba(0,0,0,0.2)",
             }}
           >
             Berhasil Terdaftar!
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.85rem" }}>
+          <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "2.0rem" }}>
             Hadiah yang bisa kamu dapatkan:
           </p>
         </div>
@@ -137,7 +137,7 @@ function ResultContent() {
               >
                 Gratis Kopi Setahun
               </p>
-              <p
+              {/* <p
                 style={{
                   color: "rgba(255,255,255,0.6)",
                   fontSize: "0.75rem",
@@ -145,7 +145,7 @@ function ResultContent() {
                 }}
               >
                 Enjoy your everyday ritual with us
-              </p>
+              </p> */}
             </div>
           </div>
 
@@ -182,7 +182,7 @@ function ResultContent() {
               >
                 Ratusan Merchandise RAKKEN
               </p>
-              <p
+              {/* <p
                 style={{
                   color: "rgba(255,255,255,0.6)",
                   fontSize: "0.75rem",
@@ -190,7 +190,7 @@ function ResultContent() {
                 }}
               >
                 Exclusive Rakken merchandise
-              </p>
+              </p> */}
             </div>
           </div>
 
@@ -227,7 +227,7 @@ function ResultContent() {
               >
                 Voucher Eksklusif RAKKEN
               </p>
-              <p
+              {/* <p
                 style={{
                   color: "rgba(255,255,255,0.6)",
                   fontSize: "0.75rem",
@@ -235,7 +235,7 @@ function ResultContent() {
                 }}
               >
                 Special discount for your next visit
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

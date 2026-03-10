@@ -168,18 +168,28 @@ export default function HomePage() {
                   margin: "2.5rem 0 4rem",
                 }}
               >
-                🎉 Selamat kamu orang ke {scanCount.toLocaleString("id-ID")}{" "}
-                yang sudah scan QR ini!
+                🎉 Congratulation Kamu Orang ke{" "}
+                {scanCount.toLocaleString("id-ID")} yang sudah scan QR ini!
               </p>
             )}
             <p
               style={{
-                color: "rgba(255,255,255,0.7)",
-                fontSize: "0.95rem",
+                color: "rgba(255,255,255,0.9)",
+                fontSize: "1.15rem",
                 fontWeight: 400,
               }}
             >
-              Menangkan free coffee a year!
+              Menangkan{" "}
+              <span
+                style={{
+                  color: "#fde68a",
+                  fontWeight: 700,
+                  textShadow: "0 0 15px rgba(252,211,77,0.4)",
+                }}
+              >
+                Gratis Kopi
+              </span>{" "}
+              Selama 1 Tahun!
             </p>
           </div>
 
@@ -217,12 +227,10 @@ export default function HomePage() {
               <li>
                 Follow Instagram{" "}
                 <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong>{" "}
-                sebagai syarat untuk berkesempatan memenangkan Free Coffee for a
-                Year.
               </li>
               <li>
-                Masukkan nama dan nomor WhatsApp aktif untuk ikut
-                berpartisipasi.
+                Masukkan nama lengkap, username Instagram dan nomor WhatsApp
+                aktif untuk ikut berpartisipasi.
               </li>
               <li>Tunggu pengumuman pemenang di Instagram @rakkencoffee.</li>
             </ol>
@@ -286,9 +294,31 @@ export default function HomePage() {
             }}
           >
             {alreadyPlayed ? (
-              <>Oops! Kamu sudah<br /><span style={{ color: "#fde68a", textShadow: "0 0 20px rgba(252,211,77,0.4)" }}>berpartisipasi.</span></>
+              <>
+                Oops! Kamu sudah
+                <br />
+                <span
+                  style={{
+                    color: "#fde68a",
+                    textShadow: "0 0 20px rgba(252,211,77,0.4)",
+                  }}
+                >
+                  berpartisipasi.
+                </span>
+              </>
             ) : (
-              <>Coba Keberuntunganmu<br /><span style={{ color: "#fde68a", textShadow: "0 0 20px rgba(252,211,77,0.4)" }}>Sekarang!</span></>
+              <>
+                Coba Keberuntunganmu
+                <br />
+                <span
+                  style={{
+                    color: "#fde68a",
+                    textShadow: "0 0 20px rgba(252,211,77,0.4)",
+                  }}
+                >
+                  Gratis Kopi Setahun Menunggu.
+                </span>
+              </>
             )}
           </h2>
 
@@ -306,6 +336,35 @@ export default function HomePage() {
               <AlreadyPlayedState />
             ) : (
               <>
+                {/* Instagram CTA */}
+                <a
+                  href="https://instagram.com/rakkencoffee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover-scale"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.625rem",
+                    width: "100%",
+                    padding: "1rem 1.5rem",
+                    borderRadius: "0.75rem",
+                    fontSize: "1rem",
+                    fontWeight: 700,
+                    background:
+                      "linear-gradient(135deg, #833ab4, #e1306c, #f56040)",
+                    color: "#fff",
+                    boxShadow: "0 4px 20px rgba(225,48,108,0.3)",
+                    textDecoration: "none",
+                    textAlign: "center",
+                    transition: "transform 0.2s",
+                  }}
+                >
+                  <Instagram size={20} />
+                  <span>Follow @rakkencoffee</span>
+                </a>
+
                 {/* Input section wrapper */}
                 <div
                   style={{
@@ -452,35 +511,6 @@ export default function HomePage() {
                     </>
                   )}
                 </button>
-
-                {/* Instagram CTA */}
-                <a
-                  href="https://instagram.com/rakkencoffee"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover-scale"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "0.625rem",
-                    width: "100%",
-                    padding: "1rem 1.5rem",
-                    borderRadius: "0.75rem",
-                    fontSize: "1rem",
-                    fontWeight: 700,
-                    background:
-                      "linear-gradient(135deg, #833ab4, #e1306c, #f56040)",
-                    color: "#fff",
-                    boxShadow: "0 4px 20px rgba(225,48,108,0.3)",
-                    textDecoration: "none",
-                    textAlign: "center",
-                    transition: "transform 0.2s",
-                  }}
-                >
-                  <Instagram size={20} />
-                  <span>Follow @rakkencoffee</span>
-                </a>
               </>
             )}
           </div>
