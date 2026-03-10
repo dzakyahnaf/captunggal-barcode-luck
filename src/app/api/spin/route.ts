@@ -118,7 +118,12 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(
-        { won: true, code, scanOrder, redirectUrl: `/result-rev?won=true&code=${code}` },
+        {
+          won: true,
+          code,
+          scanOrder,
+          redirectUrl: `/result-rev?won=true&code=${code}`,
+        },
         { status: 200 },
       );
     }

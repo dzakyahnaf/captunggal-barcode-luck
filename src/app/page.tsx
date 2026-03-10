@@ -10,6 +10,7 @@ interface SpinResult {
   redirectUrl?: string;
   error?: string;
   alreadyPlayed?: boolean;
+  scanOrder?: number;
 }
 
 export default function HomePage() {
