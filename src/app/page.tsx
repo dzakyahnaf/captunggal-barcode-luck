@@ -285,16 +285,11 @@ export default function HomePage() {
               textShadow: "0 2px 12px rgba(0,0,0,0.25)",
             }}
           >
-            Coba Keberuntunganmu
-            <br />
-            <span
-              style={{
-                color: "#fde68a",
-                textShadow: "0 0 20px rgba(252,211,77,0.4)",
-              }}
-            >
-              Sekarang!
-            </span>
+            {alreadyPlayed ? (
+              <>Oops! Kamu sudah<br /><span style={{ color: "#fde68a", textShadow: "0 0 20px rgba(252,211,77,0.4)" }}>berpartisipasi.</span></>
+            ) : (
+              <>Coba Keberuntunganmu<br /><span style={{ color: "#fde68a", textShadow: "0 0 20px rgba(252,211,77,0.4)" }}>Sekarang!</span></>
+            )}
           </h2>
 
           {/* ===== FORM CARD ===== */}
@@ -490,30 +485,6 @@ export default function HomePage() {
             )}
           </div>
 
-          {/* ===== WINNER ANNOUNCEMENT ===== */}
-          <div
-            style={{
-              background: "rgba(0,0,0,0.2)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: "0.875rem",
-              padding: "1rem",
-              textAlign: "center",
-              width: "100%",
-              marginBottom: "1.5rem",
-            }}
-          >
-            <p
-              style={{
-                color: "#fde68a",
-                fontSize: "0.85rem",
-                fontWeight: 600,
-                textShadow: "0 0 15px rgba(252,211,77,0.3)",
-              }}
-            >
-              🏆 Gratis Kopi Setahun Menunggu.
-            </p>
-          </div>
-
           {/* ===== BE PART OF IT ===== */}
           {/* <p style={{
             color: "rgba(255,255,255,0.5)",
@@ -559,21 +530,24 @@ function AlreadyPlayedState() {
         ⏰
       </div>
       <div>
-        <h2 style={{ color: "#F2F2F2", fontSize: "1.125rem", fontWeight: 700 }}>
-          Sudah Berpartisipasi
+        <h2 style={{ color: "#F2F2F2", fontSize: "1rem", fontWeight: 700 }}>
+          Setiap nomor hanya memiliki 1 kesempatan untuk mengikuti undian.
         </h2>
         <p
           style={{
             color: "rgba(255,255,255,0.6)",
             fontSize: "0.875rem",
-            marginTop: "0.25rem",
+            marginTop: "0.75rem",
             lineHeight: 1.5,
           }}
         >
-          Nomor ini sudah pernah mengikuti undian.
-          <br />
-          Satu nomor,{" "}
-          <strong style={{ color: "#F2F2F2" }}>satu kesempatan</strong>.
+          Pantengin terus Instagram{" "}
+          <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> untuk
+          melihat pengumumannya yang akan diumumkan Satu nomor,{" "}
+          <strong style={{ color: "#F2F2F2" }}>
+            1 minggu sebelum Grand Opening.
+          </strong>
+          . ☕
         </p>
       </div>
       <a
