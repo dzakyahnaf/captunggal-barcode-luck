@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, phone } = body as { name?: string; phone?: string };
+    const { name, instagram, phone } = body as { name?: string; instagram?: string; phone?: string };
 
     // --- Validate input ---
     if (!name || name.trim().length < 2) {
@@ -75,6 +75,7 @@ export async function POST(req: NextRequest) {
         identifier,
         ip_address: ip,
         name: name.trim(),
+        instagram: instagram?.trim() || null,
         won,
       })
       .select("id")

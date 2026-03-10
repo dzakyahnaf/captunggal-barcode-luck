@@ -28,8 +28,11 @@ function ResultContent() {
     <main
       className="relative min-h-[100dvh] overflow-x-hidden flex flex-col items-center justify-center p-6"
       style={{
-        background:
-          "linear-gradient(180deg, #7a0e15 0%, #A8131E 40%, #B5161F 70%, #c41d28 100%)",
+        backgroundImage: "url('/images/bg-2.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#7a0e15",
       }}
     >
       {/* Background texture */}
@@ -240,6 +243,19 @@ function ResultContent() {
           </div>
         </div>
 
+        {/* Syarat dan Ketentuan */}
+        <p
+          style={{
+            color: "rgba(255,255,255,0.5)",
+            fontSize: "0.75rem",
+            fontStyle: "italic",
+            textAlign: "center",
+            width: "100%",
+          }}
+        >
+          *Syarat dan Ketentuan Berlaku
+        </p>
+
         {/* Announcement Info */}
         <div
           style={{
@@ -258,12 +274,9 @@ function ResultContent() {
               lineHeight: 1.5,
             }}
           >
-            Pemenang akan diundi{" "}
-            <strong style={{ color: "#F2F2F2" }}>
-              1 minggu sebelum Grand Opening
-            </strong>
-            , jadi pastikan kamu pantengin Instagram{" "}
-            <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> terus!
+            Pantengin terus Instagram{" "}
+            <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> ,
+            pemenang akan diundi 1 minggu sebelum Grand Opening
           </p>
         </div>
 

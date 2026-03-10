@@ -15,6 +15,7 @@ interface SpinResult {
 
 export default function HomePage() {
   const [name, setName] = useState("");
+  const [instagram, setInstagram] = useState("");
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -52,7 +53,7 @@ export default function HomePage() {
       const res = await fetch("/api/spin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone }),
+        body: JSON.stringify({ name, instagram, phone }),
       });
 
       const data: SpinResult = await res.json();
@@ -86,8 +87,11 @@ export default function HomePage() {
     <main
       className="relative h-[100dvh] w-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
       style={{
-        background:
-          "linear-gradient(180deg, #7a0e15 0%, #A8131E 40%, #B5161F 70%, #c41d28 100%)",
+        backgroundImage: "url('/images/bg-2.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#7a0e15",
         scrollBehavior: "smooth",
       }}
     >
@@ -149,32 +153,33 @@ export default function HomePage() {
           <div style={{ textAlign: "center", marginBottom: "1rem" }}>
             <p
               style={{
-                color: "#F2F2F2",
+                color: "#FFFFFF",
                 fontSize: "1.1rem",
-                fontWeight: 700,
+                fontWeight: 500,
                 lineHeight: 1.4,
                 marginBottom: "0.25rem",
               }}
             >
-              Your New Everyday Ritual in Sips and Bites
+              Your New Everyday Ritual <br /> in Sips and Bites
             </p>
             {scanCount !== null && scanCount > 0 && (
               <p
                 style={{
-                  color: "#fde68a",
-                  fontSize: "1.15rem",
-                  fontWeight: 600,
+                  color: "#FFFFFF",
+                  fontSize: "1.35rem",
+                  fontWeight: 700,
                   textShadow: "0 0 10px rgba(252,211,77,0.3)",
                   margin: "2.5rem 0 4rem",
                 }}
               >
-                🎉 Congratulation Kamu Orang ke{" "}
-                {scanCount.toLocaleString("id-ID")} yang sudah scan QR ini!
+                <span style={{ fontWeight: 700 }}>CONGRATULATIONS! </span>
+                KAMU ADALAH ORANG KE-
+                {scanCount.toLocaleString("id-ID")} YANG SUDAH SCAN QR INI.
               </p>
             )}
             <p
               style={{
-                color: "rgba(255,255,255,0.9)",
+                color: "#FFFFFF",
                 fontSize: "1.15rem",
                 fontWeight: 400,
               }}
@@ -182,12 +187,11 @@ export default function HomePage() {
               Menangkan{" "}
               <span
                 style={{
-                  color: "#fde68a",
+                  color: "#FFFFFF",
                   fontWeight: 700,
-                  textShadow: "0 0 15px rgba(252,211,77,0.4)",
                 }}
               >
-                Gratis Kopi
+                KOPI GRATIS
               </span>{" "}
               Selama 1 Tahun!
             </p>
@@ -196,8 +200,8 @@ export default function HomePage() {
           {/* ===== RULES ===== */}
           <div
             style={{
-              background: "rgba(0,0,0,0.15)",
-              border: "1px solid rgba(255,255,255,0.12)",
+              background: "#FFFFFF",
+              border: "1px solid rgba(0,0,0,0.08)",
               borderRadius: "0.875rem",
               padding: "1.25rem 1.5rem",
               width: "100%",
@@ -206,7 +210,7 @@ export default function HomePage() {
           >
             <p
               style={{
-                color: "#F2F2F2",
+                color: "#1a1a1a",
                 fontWeight: 700,
                 fontSize: "0.9rem",
                 marginBottom: "0.75rem",
@@ -216,7 +220,7 @@ export default function HomePage() {
             </p>
             <ol
               style={{
-                color: "rgba(255,255,255,0.75)",
+                color: "#333333",
                 fontSize: "0.875rem",
                 lineHeight: 1.7,
                 paddingLeft: "1.25rem",
@@ -226,7 +230,7 @@ export default function HomePage() {
             >
               <li>
                 Follow Instagram{" "}
-                <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong>{" "}
+                <strong style={{ color: "#1a1a1a" }}>@rakkencoffee</strong>{" "}
               </li>
               <li>
                 Masukkan nama lengkap, username Instagram dan nomor WhatsApp
@@ -241,8 +245,8 @@ export default function HomePage() {
             onClick={scrollToNext}
             className="mt-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
             style={{
-              color: "#fde68a",
-              textShadow: "0 0 15px rgba(252,211,77,0.6)",
+              color: "#FFFFFF",
+              textShadow: "0 0 15px rgba(255,255,255,0.3)",
             }}
           >
             <span
@@ -253,11 +257,13 @@ export default function HomePage() {
                 textTransform: "uppercase",
               }}
             >
-              Scroll kebawah
+              Scroll ke bawah
             </span>
             <div
               className="animate-bounce"
-              style={{ filter: "drop-shadow(0 0 8px rgba(252, 211, 77, 0.8))" }}
+              style={{
+                filter: "drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))",
+              }}
             >
               <ChevronDown size={28} />
             </div>
@@ -299,8 +305,8 @@ export default function HomePage() {
                 <br />
                 <span
                   style={{
-                    color: "#fde68a",
-                    textShadow: "0 0 20px rgba(252,211,77,0.4)",
+                    color: "#FFFFFF",
+                    textShadow: "0 0 20px rgba(255,255,255,0.4)",
                   }}
                 >
                   berpartisipasi.
@@ -312,11 +318,11 @@ export default function HomePage() {
                 <br />
                 <span
                   style={{
-                    color: "#fde68a",
-                    textShadow: "0 0 20px rgba(252,211,77,0.4)",
+                    color: "#FFFFFF",
+                    textShadow: "0 0 20px rgba(255,255,255,0.4)",
                   }}
                 >
-                  Gratis Kopi Setahun Menunggu.
+                  KOPI GRATIS Setahun Menunggu.
                 </span>
               </>
             )}
@@ -384,7 +390,7 @@ export default function HomePage() {
                     <label
                       htmlFor="name-input"
                       style={{
-                        color: "rgba(255,255,255,0.75)",
+                        color: "#FFFFFF",
                         fontSize: "0.875rem",
                         fontWeight: 500,
                         display: "flex",
@@ -409,6 +415,43 @@ export default function HomePage() {
                     />
                   </div>
 
+                  {/* Instagram username input */}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <label
+                      htmlFor="instagram-input"
+                      style={{
+                        color: "#FFFFFF",
+                        fontSize: "0.875rem",
+                        fontWeight: 500,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                      }}
+                    >
+                      <Instagram size={15} style={{ color: "#FFFFFF" }} />
+                      Username Instagram
+                    </label>
+                    <input
+                      id="instagram-input"
+                      type="text"
+                      className="input-field"
+                      placeholder="Contoh: @rakkencoffee"
+                      value={instagram}
+                      onChange={(e) => {
+                        setInstagram(e.target.value);
+                        if (error) setError("");
+                      }}
+                      disabled={isLoading}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   {/* Phone input */}
                   <div
                     style={{
@@ -420,7 +463,7 @@ export default function HomePage() {
                     <label
                       htmlFor="phone-input"
                       style={{
-                        color: "rgba(255,255,255,0.75)",
+                        color: "#FFFFFF",
                         fontSize: "0.875rem",
                         fontWeight: 500,
                         display: "flex",
@@ -428,7 +471,7 @@ export default function HomePage() {
                         gap: "0.5rem",
                       }}
                     >
-                      <Smartphone size={15} style={{ color: "#F2F2F2" }} />
+                      <Smartphone size={15} style={{ color: "#FFFFFF" }} />
                       Nomor WhatsApp
                     </label>
                     <input
@@ -468,7 +511,12 @@ export default function HomePage() {
                 <button
                   id="spin-btn"
                   onClick={handleSpin}
-                  disabled={isLoading || !phone.trim() || !name.trim()}
+                  disabled={
+                    isLoading ||
+                    !phone.trim() ||
+                    !name.trim() ||
+                    !instagram.trim()
+                  }
                   className="hover-scale"
                   style={{
                     display: "flex",
@@ -484,7 +532,12 @@ export default function HomePage() {
                     color: "#A8131E",
                     cursor: isLoading ? "not-allowed" : "pointer",
                     opacity:
-                      !phone.trim() || !name.trim() || isLoading ? 0.6 : 1,
+                      !phone.trim() ||
+                      !name.trim() ||
+                      !instagram.trim() ||
+                      isLoading
+                        ? 0.6
+                        : 1,
                     boxShadow: "0 4px 15px rgba(255,255,255,0.25)",
                     transition: "all 0.2s",
                     border: "none",
@@ -560,24 +613,20 @@ function AlreadyPlayedState() {
         ⏰
       </div>
       <div>
-        <h2 style={{ color: "#F2F2F2", fontSize: "1rem", fontWeight: 700 }}>
+        <h2 style={{ color: "#FFFFFF", fontSize: "1rem", fontWeight: 700 }}>
           Setiap nomor hanya memiliki 1 kesempatan untuk mengikuti undian.
         </h2>
         <p
           style={{
-            color: "rgba(255,255,255,0.6)",
+            color: "#FFFFFF",
             fontSize: "0.875rem",
             marginTop: "0.75rem",
             lineHeight: 1.5,
           }}
         >
           Pantengin terus Instagram{" "}
-          <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> untuk
-          melihat pengumumannya yang akan diumumkan Satu nomor,{" "}
-          <strong style={{ color: "#F2F2F2" }}>
-            1 minggu sebelum Grand Opening.
-          </strong>
-          . ☕
+          <strong style={{ color: "#FFFFFF" }}>@rakkencoffee</strong> , pemenang
+          akan diundi 1 minggu sebelum Grand Opening{" "}
         </p>
       </div>
       <a

@@ -2,11 +2,24 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
-import { Copy, CheckCircle, Instagram, Trophy, XCircle, Coffee } from "lucide-react";
+import {
+  Copy,
+  CheckCircle,
+  Instagram,
+  Trophy,
+  XCircle,
+  Coffee,
+} from "lucide-react";
 
 const CONFETTI_COLORS = [
-  "#fcd34d", "#fde68a", "#F2F2F2", "#ffffff",
-  "#f59e0b", "#fbbf24", "#E6E6E6", "#d4a855",
+  "#fcd34d",
+  "#fde68a",
+  "#F2F2F2",
+  "#ffffff",
+  "#f59e0b",
+  "#fbbf24",
+  "#E6E6E6",
+  "#d4a855",
 ];
 
 interface ConfettiPiece {
@@ -25,7 +38,8 @@ function ConfettiEffect() {
   useEffect(() => {
     const generated: ConfettiPiece[] = Array.from({ length: 60 }, (_, i) => ({
       id: i,
-      color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+      color:
+        CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
       left: Math.random() * 100,
       duration: 2.5 + Math.random() * 2.5,
       delay: Math.random() * 2,
@@ -103,17 +117,32 @@ function ResultContent() {
         <ConfettiEffect />
         <main
           className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
-          style={{ background: "linear-gradient(160deg, #7a0e15 0%, #A8131E 50%, #8a1018 100%)" }}
+          style={{
+            backgroundImage: "url('/images/bg-2.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundColor: "#7a0e15",
+          }}
         >
           <div className="absolute inset-0 bg-dots opacity-40" />
           <div className="absolute inset-0 bg-radial-gold" />
-          <div className="absolute top-0 -right-40 w-80 h-80 rounded-full blur-3xl"
-            style={{ background: "radial-gradient(circle, rgba(0,0,0,0.12), transparent)" }} />
-          <div className="absolute bottom-0 -left-40 w-96 h-96 rounded-full blur-3xl"
-            style={{ background: "radial-gradient(circle, rgba(0,0,0,0.1), transparent)" }} />
+          <div
+            className="absolute top-0 -right-40 w-80 h-80 rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(0,0,0,0.12), transparent)",
+            }}
+          />
+          <div
+            className="absolute bottom-0 -left-40 w-96 h-96 rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(0,0,0,0.1), transparent)",
+            }}
+          />
 
           <div className="relative z-10 w-full max-w-md flex flex-col items-center gap-8 animate-fade-in-up">
-
             {/* Trophy */}
             <div className="flex flex-col items-center gap-4 text-center">
               <div className="relative">
@@ -129,13 +158,21 @@ function ResultContent() {
               </div>
 
               <div>
-                <p className="text-sm font-semibold tracking-widest uppercase mb-2"
-                  style={{ color: "rgba(255,255,255,0.7)" }}>
+                <p
+                  className="text-sm font-semibold tracking-widest uppercase mb-2"
+                  style={{ color: "rgba(255,255,255,0.7)" }}
+                >
                   🎉 Selamat! Kamu Menang!
                 </p>
-                <h1 className="text-3xl font-extrabold leading-tight" style={{ color: "#F2F2F2" }}>
+                <h1
+                  className="text-3xl font-extrabold leading-tight"
+                  style={{ color: "#F2F2F2" }}
+                >
                   Kamu adalah
-                  <span className="block text-glow-gold mt-1" style={{ color: "#fde68a" }}>
+                  <span
+                    className="block text-glow-gold mt-1"
+                    style={{ color: "#fde68a" }}
+                  >
                     Pemenang Beruntung
                   </span>
                 </h1>
@@ -148,8 +185,16 @@ function ResultContent() {
               style={{ borderColor: "rgba(252,211,77,0.2)" }}
             >
               <div className="flex flex-col gap-3 text-center">
-                <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>Kode Pemenang Kamu:</p>
-                <div id="winner-code" className="code-display animate-pulse-glow">
+                <p
+                  className="text-sm"
+                  style={{ color: "rgba(255,255,255,0.6)" }}
+                >
+                  Kode Pemenang Kamu:
+                </p>
+                <div
+                  id="winner-code"
+                  className="code-display animate-pulse-glow"
+                >
                   {code}
                 </div>
 
@@ -165,8 +210,12 @@ function ResultContent() {
                     borderRadius: "0.75rem",
                     fontSize: "0.875rem",
                     fontWeight: 500,
-                    background: copied ? "rgba(106,168,79,0.15)" : "rgba(252,211,77,0.1)",
-                    border: copied ? "1px solid rgba(106,168,79,0.4)" : "1px solid rgba(252,211,77,0.35)",
+                    background: copied
+                      ? "rgba(106,168,79,0.15)"
+                      : "rgba(252,211,77,0.1)",
+                    border: copied
+                      ? "1px solid rgba(106,168,79,0.4)"
+                      : "1px solid rgba(252,211,77,0.35)",
                     color: copied ? "#6aa84f" : "#fde68a",
                     cursor: "pointer",
                     margin: "0 auto",
@@ -175,9 +224,13 @@ function ResultContent() {
                   }}
                 >
                   {copied ? (
-                    <><CheckCircle size={16} /> Tersalin!</>
+                    <>
+                      <CheckCircle size={16} /> Tersalin!
+                    </>
                   ) : (
-                    <><Copy size={16} /> Salin Kode</>
+                    <>
+                      <Copy size={16} /> Salin Kode
+                    </>
                   )}
                 </button>
               </div>
@@ -193,10 +246,28 @@ function ResultContent() {
                   border: "1px solid rgba(255,255,255,0.08)",
                 }}
               >
-                <p style={{ fontWeight: 600, marginBottom: "0.5rem", color: "#F2F2F2", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <p
+                  style={{
+                    fontWeight: 600,
+                    marginBottom: "0.5rem",
+                    color: "#F2F2F2",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
                   📋 Cara Menukar Hadiah:
                 </p>
-                <ol style={{ listStyleType: "decimal", paddingLeft: "1.25rem", color: "rgba(255,255,255,0.6)", display: "flex", flexDirection: "column", gap: "0.375rem" }}>
+                <ol
+                  style={{
+                    listStyleType: "decimal",
+                    paddingLeft: "1.25rem",
+                    color: "rgba(255,255,255,0.6)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.375rem",
+                  }}
+                >
                   <li>Screenshot halaman ini atau catat kode di atas</li>
                   <li>Tunjukkan kode ke panitia / kasir Rakken Coffee</li>
                   <li>Panitia akan memverifikasi kode secara langsung</li>
@@ -204,14 +275,23 @@ function ResultContent() {
                 </ol>
               </div>
 
-              <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-                ⚠️ Kode hanya bisa ditukar <strong style={{ color: "#E6E6E6" }}>satu kali</strong>. Simpan baik-baik!
+              <p
+                className="text-center text-xs"
+                style={{ color: "rgba(255,255,255,0.4)" }}
+              >
+                ⚠️ Kode hanya bisa ditukar{" "}
+                <strong style={{ color: "#E6E6E6" }}>satu kali</strong>. Simpan
+                baik-baik!
               </p>
             </div>
 
             {/* Follow CTA */}
             <a
-              href={redirect ? decodeURIComponent(redirect) : "https://instagram.com/rakkencoffee"}
+              href={
+                redirect
+                  ? decodeURIComponent(redirect)
+                  : "https://instagram.com/rakkencoffee"
+              }
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -241,11 +321,22 @@ function ResultContent() {
   return (
     <main
       className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
-      style={{ background: "linear-gradient(160deg, #7a0e15 0%, #8a1018 50%, #7a0e15 100%)" }}
+      style={{
+        backgroundImage: "url('/images/bg-2.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#7a0e15",
+      }}
     >
       <div className="absolute inset-0 bg-dots opacity-40" />
-      <div className="absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,0,0,0.2) 0%, transparent 70%)" }} />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,0,0,0.2) 0%, transparent 70%)",
+        }}
+      />
 
       <div className="relative z-10 w-full max-w-md flex flex-col items-center gap-8 animate-fade-in-up">
         <div className="flex flex-col items-center gap-4 text-center">
@@ -265,17 +356,30 @@ function ResultContent() {
           </div>
 
           <div>
-            <p className="text-sm font-semibold tracking-widest uppercase mb-2"
-              style={{ color: "rgba(255,255,255,0.5)" }}>
+            <p
+              className="text-sm font-semibold tracking-widest uppercase mb-2"
+              style={{ color: "rgba(255,255,255,0.5)" }}
+            >
               Belum Beruntung
             </p>
-            <h1 className="text-3xl font-extrabold leading-tight" style={{ color: "#F2F2F2" }}>
+            <h1
+              className="text-3xl font-extrabold leading-tight"
+              style={{ color: "#F2F2F2" }}
+            >
               Kali ini Belum
-              <span className="block mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>Kamu Menang</span>
+              <span
+                className="block mt-1"
+                style={{ color: "rgba(255,255,255,0.6)" }}
+              >
+                Kamu Menang
+              </span>
             </h1>
-            <p className="mt-3 text-sm leading-relaxed max-w-xs mx-auto" style={{ color: "rgba(255,255,255,0.45)" }}>
-              Jangan sedih! Nikmati kopi kamu dan follow Instagram kami
-              untuk info event &amp; giveaway berikutnya.
+            <p
+              className="mt-3 text-sm leading-relaxed max-w-xs mx-auto"
+              style={{ color: "rgba(255,255,255,0.45)" }}
+            >
+              Jangan sedih! Nikmati kopi kamu dan follow Instagram kami untuk
+              info event &amp; giveaway berikutnya.
             </p>
           </div>
         </div>
@@ -283,8 +387,13 @@ function ResultContent() {
         <div className="glass-card-strong w-full p-6 flex flex-col items-center gap-5 text-center">
           <Coffee size={40} style={{ color: "#F2F2F2" }} />
           <div>
-            <p className="font-bold text-lg" style={{ color: "#F2F2F2" }}>Follow @rakkencoffee</p>
-            <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>
+            <p className="font-bold text-lg" style={{ color: "#F2F2F2" }}>
+              Follow @rakkencoffee
+            </p>
+            <p
+              className="text-sm mt-1"
+              style={{ color: "rgba(255,255,255,0.6)" }}
+            >
               Dapatkan info event, promo, &amp; giveaway kopi terbaru!
             </p>
           </div>
@@ -329,7 +438,8 @@ function ResultContent() {
           </button>
 
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-            Akan otomatis redirect dalam {countdown > 0 ? countdown : 0} detik...
+            Akan otomatis redirect dalam {countdown > 0 ? countdown : 0}{" "}
+            detik...
           </p>
         </div>
       </div>
@@ -339,12 +449,16 @@ function ResultContent() {
 
 export default function ResultPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center"
-        style={{ background: "#A8131E" }}>
-        <div className="spinner" />
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div
+          className="min-h-screen flex items-center justify-center"
+          style={{ background: "#A8131E" }}
+        >
+          <div className="spinner" />
+        </div>
+      }
+    >
       <ResultContent />
     </Suspense>
   );
