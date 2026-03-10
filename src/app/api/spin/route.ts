@@ -13,13 +13,13 @@ export async function POST(req: NextRequest) {
     if (!name || name.trim().length < 2) {
       return NextResponse.json(
         { error: "Nama lengkap tidak valid." },
-        { status: 400 }
+        { status: 400 },
       );
     }
     if (!phone || phone.trim().length < 9) {
       return NextResponse.json(
         { error: "Nomor WhatsApp tidak valid." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -28,8 +28,6 @@ export async function POST(req: NextRequest) {
       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
       req.headers.get("x-real-ip") ||
       "unknown";
-
-
 
     // --- Hash phone for privacy ---
     const identifier = await hashIdentifier(phone);
@@ -49,14 +47,13 @@ export async function POST(req: NextRequest) {
           error: "Nomor ini sudah pernah bermain sebelumnya.",
           alreadyPlayed: true,
         },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
     // --- Run RNG ---
     const winRate = Number(process.env.WIN_RATE_PERCENT ?? 5);
 
-    
     // const { count: currentCount } = await supabase
     //   .from("scan_entries")
     //   .select("*", { count: "exact", head: true });
@@ -64,6 +61,12 @@ export async function POST(req: NextRequest) {
     // const won = nextScanNumber % 3 === 0 ? true : runRNG(winRate);
     // ⚠️ END TESTING MODE
     const won = runRNG(winRate);
+
+    // --- Get current scan count for order display ---
+    const { count: currentCount } = await supabase
+      .from("scan_entries")
+      .select("*", { count: "exact", head: true });
+    const scanOrder = (currentCount ?? 0) + 1;
 
     // --- Insert scan entry ---
     const { data: entry, error: entryError } = await supabase
@@ -81,7 +84,7 @@ export async function POST(req: NextRequest) {
       console.error("DB insert error:", entryError);
       return NextResponse.json(
         { error: "Terjadi kesalahan. Silakan coba lagi." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -110,32 +113,46 @@ export async function POST(req: NextRequest) {
       if (!code) {
         return NextResponse.json(
           { error: "Gagal menghasilkan kode. Silakan coba lagi." },
-          { status: 500 }
+          { status: 500 },
         );
       }
 
       return NextResponse.json(
-        { won: true, code, redirectUrl: `/result-rev?won=true&code=${code}` },
-        { status: 200 }
+        { won: true, code, scanOrder, redirectUrl: `/result-rev?won=true&code=${code}` },
+        { status: 200 },
       );
     }
 
     // --- If loser: return redirect URL ---
     const redirectUrl =
-      process.env.INSTAGRAM_REDIRECT_URL || "https://instagram.com/rakkencoffee";
+      process.env.INSTAGRAM_REDIRECT_URL ||
+      "https://instagram.com/rakkencoffee";
 
     return NextResponse.json(
-      { won: false, redirectUrl: `/result-rev?won=false&redirect=${encodeURIComponent(redirectUrl)}` },
-      { status: 200 }
+      {
+        won: false,
+        scanOrder,
+        redirectUrl: `/result-rev?won=false&redirect=${encodeURIComponent(redirectUrl)}`,
+      },
+      { status: 200 },
     );
   } catch (err) {
     console.error("Spin error:", err instanceof Error ? err.message : err);
-    console.error("Env check - SUPABASE_URL:", !!process.env.NEXT_PUBLIC_SUPABASE_URL);
-    console.error("Env check - SERVICE_KEY:", !!process.env.SUPABASE_SERVICE_ROLE_KEY);
-    console.error("Env check - UPSTASH_URL:", !!process.env.UPSTASH_REDIS_REST_URL);
+    console.error(
+      "Env check - SUPABASE_URL:",
+      !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+    );
+    console.error(
+      "Env check - SERVICE_KEY:",
+      !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+    );
+    console.error(
+      "Env check - UPSTASH_URL:",
+      !!process.env.UPSTASH_REDIS_REST_URL,
+    );
     return NextResponse.json(
       { error: "Terjadi kesalahan server." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

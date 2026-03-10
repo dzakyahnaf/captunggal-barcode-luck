@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { Instagram, Coffee, Gift, Ticket, ChevronRight } from "lucide-react";
 
-export default function ResultRevPage() {
+function ResultContent() {
+  const searchParams = useSearchParams();
+  const scanOrder = searchParams.get("scanOrder");
   const [countdown, setCountdown] = useState(20);
 
   useEffect(() => {
@@ -26,48 +29,86 @@ export default function ResultRevPage() {
     <main
       className="relative min-h-[100dvh] overflow-x-hidden flex flex-col items-center justify-center p-6"
       style={{
-        background: "linear-gradient(180deg, #7a0e15 0%, #A8131E 40%, #B5161F 70%, #c41d28 100%)",
+        background:
+          "linear-gradient(180deg, #7a0e15 0%, #A8131E 40%, #B5161F 70%, #c41d28 100%)",
       }}
     >
       {/* Background texture */}
       <div className="absolute inset-0 bg-dots opacity-30 pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.25) 100%)",
-      }} />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.25) 100%)",
+        }}
+      />
 
       {/* Decorative blobs */}
-      <div className="absolute top-0 -left-20 w-64 h-64 rounded-full blur-3xl opacity-50 pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(200,30,40,0.4), transparent)" }} />
-      <div className="absolute bottom-0 -right-20 w-64 h-64 rounded-full blur-3xl opacity-50 pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(168,19,30,0.35), transparent)" }} />
+      <div
+        className="absolute top-0 -left-20 w-64 h-64 rounded-full blur-3xl opacity-50 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(200,30,40,0.4), transparent)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 -right-20 w-64 h-64 rounded-full blur-3xl opacity-50 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(168,19,30,0.35), transparent)",
+        }}
+      />
 
       {/* Content wrapper */}
-      <div className="relative z-10 w-full flex flex-col items-center justify-center animate-fade-in-up md:h-full" style={{ maxWidth: "400px", gap: "1.25rem" }}>
-        
+      <div
+        className="relative z-10 w-full flex flex-col items-center justify-center animate-fade-in-up md:h-full"
+        style={{ maxWidth: "400px", gap: "1.25rem" }}
+      >
         {/* Header Icon */}
-        <div style={{
-          width: "3.5rem",
-          height: "3.5rem",
-          borderRadius: "1rem",
-          background: "rgba(255,255,255,0.1)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          border: "1px solid rgba(255,255,255,0.2)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
-          marginBottom: "-0.5rem"
-        }}>
+        <div
+          style={{
+            width: "3.5rem",
+            height: "3.5rem",
+            borderRadius: "1rem",
+            background: "rgba(255,255,255,0.1)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: "1px solid rgba(255,255,255,0.2)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+            marginBottom: "-0.5rem",
+          }}
+        >
           <span style={{ fontSize: "1.5rem" }}>🎉</span>
         </div>
 
         {/* Title */}
-        <div className="text-center" style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-          <h1 className="font-pottred" style={{
-            color: "#FFFFFF",
-            fontSize: "1.5rem",
-            lineHeight: 1.1,
-            textShadow: "0 2px 10px rgba(0,0,0,0.2)"
-          }}>
+        <div
+          className="text-center"
+          style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}
+        >
+          {scanOrder && (
+            <p
+              style={{
+                color: "#fde68a",
+                fontSize: "0.9rem",
+                fontWeight: 600,
+                textShadow: "0 0 10px rgba(252,211,77,0.3)",
+                marginBottom: "0.25rem",
+              }}
+            >
+              🎉 Selamat! Kamu orang ke-{scanOrder} yang sudah scan QR ini
+            </p>
+          )}
+          <h1
+            className="font-pottred"
+            style={{
+              color: "#FFFFFF",
+              fontSize: "1.5rem",
+              lineHeight: 1.1,
+              textShadow: "0 2px 10px rgba(0,0,0,0.2)",
+            }}
+          >
             Berhasil Terdaftar!
           </h1>
           <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.85rem" }}>
@@ -76,78 +117,172 @@ export default function ResultRevPage() {
         </div>
 
         {/* Prizes Card */}
-        <div className="glass-card-strong w-full" style={{ padding: "1rem 1.25rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
-          
-          <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
-            <div style={{ 
-              background: "rgba(252,211,77,0.15)", 
-              color: "#fde68a",
-              padding: "0.4rem",
-              borderRadius: "0.5rem",
-              border: "1px solid rgba(252,211,77,0.3)"
-            }}>
+        <div
+          className="glass-card-strong w-full"
+          style={{
+            padding: "1rem 1.25rem",
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+          }}
+        >
+          <div
+            style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}
+          >
+            <div
+              style={{
+                background: "rgba(252,211,77,0.15)",
+                color: "#fde68a",
+                padding: "0.4rem",
+                borderRadius: "0.5rem",
+                border: "1px solid rgba(252,211,77,0.3)",
+              }}
+            >
               <Coffee size={20} />
             </div>
             <div>
-              <p style={{ color: "#F2F2F2", fontWeight: 700, fontSize: "0.95rem", lineHeight: 1.2 }}>Gratis Kopi Setahun</p>
-              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.75rem", marginTop: "0.125rem" }}>Enjoy your everyday ritual with us</p>
+              <p
+                style={{
+                  color: "#F2F2F2",
+                  fontWeight: 700,
+                  fontSize: "0.95rem",
+                  lineHeight: 1.2,
+                }}
+              >
+                Gratis Kopi Setahun
+              </p>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.6)",
+                  fontSize: "0.75rem",
+                  marginTop: "0.125rem",
+                }}
+              >
+                Enjoy your everyday ritual with us
+              </p>
             </div>
           </div>
 
-          <div style={{ height: "1px", background: "rgba(255,255,255,0.1)", width: "100%" }} />
+          <div
+            style={{
+              height: "1px",
+              background: "rgba(255,255,255,0.1)",
+              width: "100%",
+            }}
+          />
 
-          <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
-            <div style={{ 
-              background: "rgba(255,255,255,0.1)", 
-              color: "#F2F2F2",
-              padding: "0.4rem",
-              borderRadius: "0.5rem",
-              border: "1px solid rgba(255,255,255,0.15)"
-            }}>
+          <div
+            style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}
+          >
+            <div
+              style={{
+                background: "rgba(255,255,255,0.1)",
+                color: "#F2F2F2",
+                padding: "0.4rem",
+                borderRadius: "0.5rem",
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}
+            >
               <Gift size={20} />
             </div>
             <div>
-              <p style={{ color: "#F2F2F2", fontWeight: 700, fontSize: "0.95rem", lineHeight: 1.2 }}>Ratusan Merchandise</p>
-              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.75rem", marginTop: "0.125rem" }}>Exclusive Rakken merchandise</p>
+              <p
+                style={{
+                  color: "#F2F2F2",
+                  fontWeight: 700,
+                  fontSize: "0.95rem",
+                  lineHeight: 1.2,
+                }}
+              >
+                Ratusan Merchandise
+              </p>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.6)",
+                  fontSize: "0.75rem",
+                  marginTop: "0.125rem",
+                }}
+              >
+                Exclusive Rakken merchandise
+              </p>
             </div>
           </div>
 
-          <div style={{ height: "1px", background: "rgba(255,255,255,0.1)", width: "100%" }} />
+          <div
+            style={{
+              height: "1px",
+              background: "rgba(255,255,255,0.1)",
+              width: "100%",
+            }}
+          />
 
-          <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
-            <div style={{ 
-              background: "rgba(255,255,255,0.1)", 
-              color: "#F2F2F2",
-              padding: "0.4rem",
-              borderRadius: "0.5rem",
-              border: "1px solid rgba(255,255,255,0.15)"
-            }}>
+          <div
+            style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}
+          >
+            <div
+              style={{
+                background: "rgba(255,255,255,0.1)",
+                color: "#F2F2F2",
+                padding: "0.4rem",
+                borderRadius: "0.5rem",
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}
+            >
               <Ticket size={20} />
             </div>
             <div>
-              <p style={{ color: "#F2F2F2", fontWeight: 700, fontSize: "0.95rem", lineHeight: 1.2 }}>Voucher Eksklusif Rakken</p>
-              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.75rem", marginTop: "0.125rem" }}>Special discount for your next visit</p>
+              <p
+                style={{
+                  color: "#F2F2F2",
+                  fontWeight: 700,
+                  fontSize: "0.95rem",
+                  lineHeight: 1.2,
+                }}
+              >
+                Voucher Eksklusif Rakken
+              </p>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.6)",
+                  fontSize: "0.75rem",
+                  marginTop: "0.125rem",
+                }}
+              >
+                Special discount for your next visit
+              </p>
             </div>
           </div>
-
         </div>
 
         {/* Announcement Info */}
-        <div style={{ 
-          background: "rgba(0,0,0,0.2)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          borderRadius: "0.875rem",
-          padding: "1rem",
-          textAlign: "center",
-          width: "100%"
-        }}>
-          <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.8rem", lineHeight: 1.5 }}>
-            Pemenang akan diundi <strong style={{ color: "#F2F2F2" }}>1 minggu sebelum Grand Opening</strong>, jadi pastikan kamu pantengin Instagram <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> terus!
+        <div
+          style={{
+            background: "rgba(0,0,0,0.2)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            borderRadius: "0.875rem",
+            padding: "1rem",
+            textAlign: "center",
+            width: "100%",
+          }}
+        >
+          <p
+            style={{
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "0.8rem",
+              lineHeight: 1.5,
+            }}
+          >
+            Pemenang akan diundi{" "}
+            <strong style={{ color: "#F2F2F2" }}>
+              1 minggu sebelum Grand Opening
+            </strong>
+            , jadi pastikan kamu pantengin Instagram{" "}
+            <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> terus!
           </p>
         </div>
 
         {/* Action Button */}
-        <a 
+        <a
           href="https://instagram.com/rakkencoffee"
           style={{
             display: "flex",
@@ -171,8 +306,15 @@ export default function ResultRevPage() {
           <span>Ke Instagram ({countdown}s)</span>
           <ChevronRight size={18} style={{ marginLeft: "auto" }} />
         </a>
-
       </div>
     </main>
+  );
+}
+
+export default function ResultPage() {
+  return (
+    <Suspense>
+      <ResultContent />
+    </Suspense>
   );
 }
