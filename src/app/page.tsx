@@ -87,7 +87,7 @@ export default function HomePage() {
     <main
       className="relative h-[100dvh] w-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
       style={{
-        backgroundImage: "url('/images/bg-2.png')",
+        backgroundImage: "url('/images/bg-2.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -434,7 +434,6 @@ export default function HomePage() {
                         gap: "0.5rem",
                       }}
                     >
-                      <Instagram size={15} style={{ color: "#FFFFFF" }} />
                       Username Instagram
                     </label>
                     <input
@@ -471,7 +470,6 @@ export default function HomePage() {
                         gap: "0.5rem",
                       }}
                     >
-                      <Smartphone size={15} style={{ color: "#FFFFFF" }} />
                       Nomor WhatsApp
                     </label>
                     <input

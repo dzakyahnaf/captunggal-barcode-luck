@@ -118,7 +118,7 @@ function ResultContent() {
         <main
           className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
           style={{
-            backgroundImage: "url('/images/bg-2.png')",
+            backgroundImage: "url('/images/bg-2.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -322,7 +322,7 @@ function ResultContent() {
     <main
       className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
       style={{
-        backgroundImage: "url('/images/bg-2.png')",
+        backgroundImage: "url('/images/bg-2.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

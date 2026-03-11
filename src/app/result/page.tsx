@@ -28,7 +28,7 @@ function ResultContent() {
     <main
       className="relative min-h-[100dvh] overflow-x-hidden flex flex-col items-center justify-center p-6"
       style={{
-        backgroundImage: "url('/images/bg-2.png')",
+        backgroundImage: "url('/images/bg-2.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
