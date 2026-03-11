@@ -1,29 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const { count } = await getSupabaseAdmin()
-    .from("qr_scans")
-    .select("*", { count: "exact", head: true });
-
-  return NextResponse.json({ count: count ?? 0 });
+  try {
+    const googleSheetWebHookUrl = process.env.GOOGLE_APP_SCRIPT_URL;
+    if (googleSheetWebHookUrl) {
+      // The parameter-less fetch to the Webhook triggers the `doGet(e)` function
+      // that the user configured to return the total rows.
+      const response = await fetch(googleSheetWebHookUrl, {
+        method: "GET",
+      });
+      const data = await response.json();
+      return NextResponse.json({ count: data.count || 0 });
+    }
+  } catch (error) {
+    console.error("Failed to fetch count from Google Sheets", error);
+  }
+  return NextResponse.json({ count: 0 });
 }
 
-export async function POST(req: NextRequest) {
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    req.headers.get("x-real-ip") ||
-    "unknown";
-
-  const supabase = getSupabaseAdmin();
-
-  await supabase.from("qr_scans").insert({ ip_address: ip });
-
-  const { count } = await supabase
-    .from("qr_scans")
-    .select("*", { count: "exact", head: true });
-
-  return NextResponse.json({ count: count ?? 0 });
+export async function POST() {
+  // The frontend calls POST on component mount to record a "hit".
+  // Since we are migrating purely to Google Sheets for "Actual Participants",
+  // we do not need to log empty IPs. We simply return the current row count from Sheets.
+  return GET();
 }
