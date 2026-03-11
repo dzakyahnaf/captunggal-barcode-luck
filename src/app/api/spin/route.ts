@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     let scanOrder = 0;
     
     // --- Send Data to Google Sheets (Webhook Approach) ---
-    // The Webhook Apps Script handles checking for duplicates and returning the scan order
+    // The Webhook Apps Script handles checking for duplicates and returning the scan order ATOMICALLY with a Lock!
     const googleSheetWebHookUrl = process.env.GOOGLE_APP_SCRIPT_URL;
     if (googleSheetWebHookUrl) {
       try {
@@ -82,14 +82,14 @@ export async function POST(req: NextRequest) {
       } catch (e) {
         console.error("Failed to trigger Google Sheets webhook", e);
         return NextResponse.json(
-          { error: "Koneksi ke database gagal. Silakan coba lagi." },
+          { error: "Koneksi ke database Sheets gagal atau sibuk. Silakan coba lagi sebentar lagi." },
           { status: 500 },
         );
       }
     } else {
         console.error("GOOGLE_APP_SCRIPT_URL is entirely missing");
         return NextResponse.json(
-          { error: "Konfigurasi server bermasalah." },
+          { error: "Konfigurasi server (Google Sheets) bermasalah." },
           { status: 500 },
         );
     }
