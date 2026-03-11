@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "@/lib/supabase";
 import { generateUniqueCode, hashIdentifier, runRNG } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +22,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // --- Get IP address ---
+    // --- Get IP address (For logging purposes) ---
     const ip =
       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
       req.headers.get("x-real-ip") ||
@@ -32,132 +31,98 @@ export async function POST(req: NextRequest) {
     // --- Hash phone for privacy ---
     const identifier = await hashIdentifier(phone);
 
-    const supabase = getSupabaseAdmin();
-
-    // --- Check if already played (DB constraint) ---
-    const { data: existing } = await supabase
-      .from("scan_entries")
-      .select("id, won")
-      .eq("identifier", identifier)
-      .single();
-
-    if (existing) {
-      return NextResponse.json(
-        {
-          error: "Nomor ini sudah pernah bermain sebelumnya.",
-          alreadyPlayed: true,
-        },
-        { status: 409 },
-      );
-    }
-
     // --- Run RNG ---
     const winRate = Number(process.env.WIN_RATE_PERCENT ?? 5);
-
-    // const { count: currentCount } = await supabase
-    //   .from("scan_entries")
-    //   .select("*", { count: "exact", head: true });
-    // const nextScanNumber = (currentCount ?? 0) + 1;
-    // const won = nextScanNumber % 3 === 0 ? true : runRNG(winRate);
-    // ⚠️ END TESTING MODE
     const won = runRNG(winRate);
 
-    // --- Get current scan count for order display ---
-    const { count: currentCount } = await supabase
-      .from("scan_entries")
-      .select("*", { count: "exact", head: true });
-    const scanOrder = (currentCount ?? 0) + 1;
-
-    // --- Insert scan entry ---
-    const { data: entry, error: entryError } = await supabase
-      .from("scan_entries")
-      .insert({
-        identifier,
-        ip_address: ip,
-        name: name.trim(),
-        instagram: instagram?.trim() || null,
-        won,
-      })
-      .select("id")
-      .single();
-
-    if (entryError || !entry) {
-      console.error("DB insert error:", entryError);
-      return NextResponse.json(
-        { error: "Terjadi kesalahan. Silakan coba lagi." },
-        { status: 500 },
-      );
+    // --- If winner: generate unique code ---
+    let codeStr = "";
+    if (won) {
+       codeStr = generateUniqueCode();
     }
 
-    // --- If winner: generate unique code ---
-    if (won) {
-      let code = "";
-      let attempts = 0;
+    let scanOrder = 0;
+    
+    // --- Send Data to Google Sheets (Webhook Approach) ---
+    // The Webhook Apps Script handles checking for duplicates and returning the scan order
+    const googleSheetWebHookUrl = process.env.GOOGLE_APP_SCRIPT_URL;
+    if (googleSheetWebHookUrl) {
+      try {
+        const response = await fetch(googleSheetWebHookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain", 
+          },
+          body: JSON.stringify({
+            identifier: identifier,
+            ip: ip,
+            name: name.trim(),
+            phone: phone.trim(),
+            instagram: instagram?.trim() || "-",
+            won: won,
+            code: codeStr || "-",
+          }),
+        });
 
-      while (attempts < 5) {
-        const candidate = generateUniqueCode();
-
-        const { error: codeError } = await supabase
-          .from("winner_codes")
-          .insert({
-            code: candidate,
-            scan_entry_id: entry.id,
-          });
-
-        if (!codeError) {
-          code = candidate;
-          break;
+        const result = await response.json();
+        
+        // Google Script will return alreadyPlayed if it finds the identifier
+        if (result.alreadyPlayed) {
+          return NextResponse.json(
+            {
+              error: "Nomor ini sudah pernah bermain sebelumnya.",
+              alreadyPlayed: true,
+            },
+            { status: 409 },
+          );
         }
-        attempts++;
-      }
 
-      if (!code) {
+        scanOrder = result.scanOrder || 0;
+
+      } catch (e) {
+        console.error("Failed to trigger Google Sheets webhook", e);
         return NextResponse.json(
-          { error: "Gagal menghasilkan kode. Silakan coba lagi." },
+          { error: "Koneksi ke database gagal. Silakan coba lagi." },
           { status: 500 },
         );
       }
+    } else {
+        console.error("GOOGLE_APP_SCRIPT_URL is entirely missing");
+        return NextResponse.json(
+          { error: "Konfigurasi server bermasalah." },
+          { status: 500 },
+        );
+    }
 
+    // --- Return Responses ---
+    if (won) {
       return NextResponse.json(
         {
           won: true,
-          code,
+          code: codeStr,
           scanOrder,
-          redirectUrl: `/result-rev?won=true&code=${code}`,
+          redirectUrl: `/result?won=true&code=${codeStr}`,
+        },
+        { status: 200 },
+      );
+    } else {
+      const redirectUrl =
+        process.env.INSTAGRAM_REDIRECT_URL ||
+        "https://instagram.com/rakkencoffee";
+
+      return NextResponse.json(
+        {
+          won: false,
+          scanOrder,
+          redirectUrl: `/result?won=false&redirect=${encodeURIComponent(redirectUrl)}`,
         },
         { status: 200 },
       );
     }
-
-    // --- If loser: return redirect URL ---
-    const redirectUrl =
-      process.env.INSTAGRAM_REDIRECT_URL ||
-      "https://instagram.com/rakkencoffee";
-
-    return NextResponse.json(
-      {
-        won: false,
-        scanOrder,
-        redirectUrl: `/result-rev?won=false&redirect=${encodeURIComponent(redirectUrl)}`,
-      },
-      { status: 200 },
-    );
   } catch (err) {
     console.error("Spin error:", err instanceof Error ? err.message : err);
-    console.error(
-      "Env check - SUPABASE_URL:",
-      !!process.env.NEXT_PUBLIC_SUPABASE_URL,
-    );
-    console.error(
-      "Env check - SERVICE_KEY:",
-      !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-    );
-    console.error(
-      "Env check - UPSTASH_URL:",
-      !!process.env.UPSTASH_REDIS_REST_URL,
-    );
     return NextResponse.json(
-      { error: "Terjadi kesalahan server." },
+      { error: "Terjadi kesalahan internal. Silakan coba lagi nanti." },
       { status: 500 },
     );
   }
