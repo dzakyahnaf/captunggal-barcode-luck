@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateUniqueCode, hashIdentifier, runRNG } from "@/lib/utils";
+import { generateUniqueCode, hashIdentifier, runRNG, parseWinRate } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -31,8 +31,10 @@ export async function POST(req: NextRequest) {
     // --- Hash phone for privacy ---
     const identifier = await hashIdentifier(phone);
 
-    // --- Run RNG ---
-    const winRate = Number(process.env.WIN_RATE_PERCENT ?? 5);
+    // --- Run RNG (with robust env var parsing) ---
+    const rawEnv = process.env.WIN_RATE_PERCENT;
+    const winRate = parseWinRate(rawEnv);
+    console.log(`[SPIN] ENV WIN_RATE_PERCENT raw="${rawEnv}", parsed=${winRate}%`);
     const won = runRNG(winRate);
 
     // --- If winner: generate unique code ---

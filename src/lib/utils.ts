@@ -25,9 +25,29 @@ export async function hashIdentifier(phone: string): Promise<string> {
 }
 
 /**
+ * Safely parse WIN_RATE_PERCENT from environment variable.
+ * Handles edge cases: empty string, NaN, undefined, out of range.
+ */
+export function parseWinRate(raw: string | undefined, fallback: number = 5): number {
+  if (raw === undefined || raw === null || raw.trim() === "") {
+    console.warn(`[RNG] WIN_RATE_PERCENT is empty/undefined, using fallback: ${fallback}%`);
+    return fallback;
+  }
+  const parsed = Number(raw);
+  if (isNaN(parsed) || parsed < 0 || parsed > 100) {
+    console.warn(`[RNG] WIN_RATE_PERCENT="${raw}" is invalid, using fallback: ${fallback}%`);
+    return fallback;
+  }
+  return parsed;
+}
+
+/**
  * Run the RNG engine
  * Returns true if user wins based on configured win rate
  */
 export function runRNG(winRatePercent: number): boolean {
-  return Math.random() * 100 < winRatePercent;
+  const roll = Math.random() * 100;
+  const won = roll < winRatePercent;
+  console.log(`[RNG] roll=${roll.toFixed(4)}, threshold=${winRatePercent}%, won=${won}`);
+  return won;
 }
