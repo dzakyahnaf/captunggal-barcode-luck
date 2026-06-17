@@ -155,8 +155,8 @@ export default function HomePage() {
             <Image
               src="/images/logo-cap-tunggal.png"
               alt="Cap Tunggal"
-              width={120}
-              height={120}
+              width={100}
+              height={100}
               priority
               style={{ objectFit: "contain" }}
             />
@@ -250,7 +250,7 @@ export default function HomePage() {
                 Masukkan nama lengkap, username Instagram, username TikTok dan nomor WhatsApp
                 aktif untuk ikut berpartisipasi.
               </li>
-              <li>Tunggu pengumuman pemenang di Instagram @captunggal dan TikTok @minyakgosokcaptunggal.</li>
+              <li>Tunggu pengumuman pemenang di Instagram @captunggal</li>
             </ol>
           </div>
 
@@ -372,7 +372,7 @@ export default function HomePage() {
                       width: "100%",
                       padding: "1rem 1.5rem",
                       borderRadius: "0.75rem",
-                      fontSize: "1rem",
+                      fontSize: "0.85rem",
                       fontWeight: 700,
                       background:
                         "linear-gradient(135deg, #833ab4, #e1306c, #f56040)",
@@ -401,7 +401,7 @@ export default function HomePage() {
                       width: "100%",
                       padding: "1rem 1.5rem",
                       borderRadius: "0.75rem",
-                      fontSize: "1rem",
+                      fontSize: "0.85rem",
                       fontWeight: 700,
                       background: "#000000",
                       color: "#fff",
@@ -410,6 +410,7 @@ export default function HomePage() {
                       textDecoration: "none",
                       textAlign: "center",
                       transition: "transform 0.2s",
+                      whiteSpace: "nowrap",
                     }}
                   >
                     <TiktokIcon size={20} />
