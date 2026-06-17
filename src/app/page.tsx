@@ -177,6 +177,7 @@ export default function HomePage() {
             </p>
             {scanCount !== null && scanCount > 0 && (
               <p
+                className="font-heading"
                 style={{
                   color: "#FFFFFF",
                   fontSize: "1.35rem",
@@ -303,6 +304,7 @@ export default function HomePage() {
           }}
         >
           <h2
+            className="font-heading"
             style={{
               color: "#FFFFFF",
               fontSize: "1.5rem",
@@ -694,7 +696,7 @@ function AlreadyPlayedState() {
         ⏰
       </div>
       <div>
-        <h2 style={{ color: "#FFFFFF", fontSize: "1rem", fontWeight: 700 }}>
+        <h2 className="font-heading" style={{ color: "#FFFFFF", fontSize: "1rem", fontWeight: 700 }}>
           Setiap nomor hanya memiliki 1 kesempatan untuk mengikuti undian.
         </h2>
         <p

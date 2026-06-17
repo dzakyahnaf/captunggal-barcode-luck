@@ -31,7 +31,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", system-ui, sans-serif;
+  font-family: var(--font-opensauce), system-ui, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
@@ -39,8 +39,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.font-pottred {
-  font-family: "Playfair Display", serif;
+.font-heading {
+  font-family: var(--font-rossanova), serif;
 }
 
 /* ===================== GRADIENTS & GLOWS ===================== */
@@ -179,7 +179,7 @@ body {
   border-radius: 0.75rem;
   color: var(--text-primary);
   font-size: 1rem;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-opensauce), sans-serif;
   transition: all 0.2s ease;
   outline: none;
 }

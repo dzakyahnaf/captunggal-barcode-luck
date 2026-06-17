@@ -86,7 +86,7 @@ function ResultContent() {
           style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}
         >
           <h1
-            className="font-pottred"
+            className="font-heading"
             style={{
               color: "#FFFFFF",
               fontSize: "3.0rem",
@@ -96,7 +96,7 @@ function ResultContent() {
           >
             Berhasil Terdaftar!
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "2.0rem" }}>
+          <p className="font-heading" style={{ color: "rgba(255,255,255,0.8)", fontSize: "2.0rem" }}>
             Hadiah yang bisa kamu dapatkan:
           </p>
         </div>
@@ -134,7 +134,7 @@ function ResultContent() {
                   lineHeight: 1.2,
                 }}
               >
-                Gratis Kopi Setahun
+                Menangkan EMAS GRATIS
               </p>
               {/* <p
                 style={{
