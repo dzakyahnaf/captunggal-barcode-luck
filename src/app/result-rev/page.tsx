@@ -12,14 +12,14 @@ import {
 } from "lucide-react";
 
 const CONFETTI_COLORS = [
-  "#fcd34d",
-  "#fde68a",
+  "#26A231",
+  "#E1FFE3",
   "#F2F2F2",
   "#ffffff",
-  "#f59e0b",
-  "#fbbf24",
+  "#075629",
+  "#6fcf77",
   "#E6E6E6",
-  "#d4a855",
+  "#b7f5bc",
 ];
 
 interface ConfettiPiece {
@@ -118,11 +118,7 @@ function ResultContent() {
         <main
           className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
           style={{
-            backgroundImage: "url('/images/bg-2.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: "#7a0e15",
+            background: "linear-gradient(160deg, #075629 0%, #054d23 40%, #043d1c 70%, #075629 100%)",
           }}
         >
           <div className="absolute inset-0 bg-dots opacity-40" />
@@ -131,14 +127,14 @@ function ResultContent() {
             className="absolute top-0 -right-40 w-80 h-80 rounded-full blur-3xl"
             style={{
               background:
-                "radial-gradient(circle, rgba(0,0,0,0.12), transparent)",
+                "radial-gradient(circle, rgba(38,162,49,0.15), transparent)",
             }}
           />
           <div
             className="absolute bottom-0 -left-40 w-96 h-96 rounded-full blur-3xl"
             style={{
               background:
-                "radial-gradient(circle, rgba(0,0,0,0.1), transparent)",
+                "radial-gradient(circle, rgba(7,86,41,0.12), transparent)",
             }}
           />
 
@@ -150,10 +146,10 @@ function ResultContent() {
                   className="relative flex items-center justify-center w-28 h-28 rounded-3xl animate-pulse-glow animate-float"
                   style={{
                     background: "rgba(0,0,0,0.2)",
-                    border: "2px solid rgba(252,211,77,0.5)",
+                    border: "2px solid rgba(38,162,49,0.5)",
                   }}
                 >
-                  <Trophy size={52} style={{ color: "#fde68a" }} />
+                  <Trophy size={52} style={{ color: "#E1FFE3" }} />
                 </div>
               </div>
 
@@ -171,7 +167,7 @@ function ResultContent() {
                   Kamu adalah
                   <span
                     className="block text-glow-gold mt-1"
-                    style={{ color: "#fde68a" }}
+                    style={{ color: "#E1FFE3" }}
                   >
                     Pemenang Beruntung
                   </span>
@@ -182,7 +178,7 @@ function ResultContent() {
             {/* Code Card */}
             <div
               className="glass-card-strong w-full p-6 flex flex-col gap-5"
-              style={{ borderColor: "rgba(252,211,77,0.2)" }}
+              style={{ borderColor: "rgba(38,162,49,0.2)" }}
             >
               <div className="flex flex-col gap-3 text-center">
                 <p
@@ -211,12 +207,12 @@ function ResultContent() {
                     fontSize: "0.875rem",
                     fontWeight: 500,
                     background: copied
-                      ? "rgba(106,168,79,0.15)"
-                      : "rgba(252,211,77,0.1)",
+                      ? "rgba(38,162,49,0.15)"
+                      : "rgba(38,162,49,0.1)",
                     border: copied
-                      ? "1px solid rgba(106,168,79,0.4)"
-                      : "1px solid rgba(252,211,77,0.35)",
-                    color: copied ? "#6aa84f" : "#fde68a",
+                      ? "1px solid rgba(38,162,49,0.4)"
+                      : "1px solid rgba(38,162,49,0.35)",
+                    color: copied ? "#E1FFE3" : "#E1FFE3",
                     cursor: "pointer",
                     margin: "0 auto",
                     minWidth: "160px",
@@ -269,7 +265,7 @@ function ResultContent() {
                   }}
                 >
                   <li>Screenshot halaman ini atau catat kode di atas</li>
-                  <li>Tunjukkan kode ke panitia / kasir Rakken Coffee</li>
+                  <li>Tunjukkan kode ke panitia / kasir Cap Tunggal</li>
                   <li>Panitia akan memverifikasi kode secara langsung</li>
                   <li>Hadiah diberikan di tempat setelah verifikasi</li>
                 </ol>
@@ -290,7 +286,7 @@ function ResultContent() {
               href={
                 redirect
                   ? decodeURIComponent(redirect)
-                  : "https://instagram.com/rakkencoffee"
+                  : "https://www.instagram.com/captunggal/"
               }
               target="_blank"
               rel="noopener noreferrer"
@@ -309,7 +305,7 @@ function ResultContent() {
               }}
             >
               <Instagram size={17} />
-              <span>Follow @rakkencoffee</span>
+              <span>Follow @captunggal</span>
             </a>
           </div>
         </main>
@@ -322,11 +318,7 @@ function ResultContent() {
     <main
       className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
       style={{
-        backgroundImage: "url('/images/bg-2.webp')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "#7a0e15",
+        background: "linear-gradient(160deg, #075629 0%, #054d23 40%, #043d1c 70%, #075629 100%)",
       }}
     >
       <div className="absolute inset-0 bg-dots opacity-40" />
@@ -334,7 +326,7 @@ function ResultContent() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,0,0,0.2) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(7,86,41,0.2) 0%, transparent 70%)",
         }}
       />
 
@@ -388,7 +380,7 @@ function ResultContent() {
           <Coffee size={40} style={{ color: "#F2F2F2" }} />
           <div>
             <p className="font-bold text-lg" style={{ color: "#F2F2F2" }}>
-              Follow @rakkencoffee
+              Follow @captunggal
             </p>
             <p
               className="text-sm mt-1"
@@ -453,7 +445,7 @@ export default function ResultPage() {
       fallback={
         <div
           className="min-h-screen flex items-center justify-center"
-          style={{ background: "#A8131E" }}
+          style={{ background: "#075629" }}
         >
           <div className="spinner" />
         </div>

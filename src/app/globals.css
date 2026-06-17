@@ -1,20 +1,9 @@
 @import "tailwindcss";
 
-/* ===== Campton Font Family ===== */
-@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonLight.otf") format("opentype"); font-weight: 300; font-style: normal; font-display: swap; }
-@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonBook.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonMedium.otf") format("opentype"); font-weight: 500; font-style: normal; font-display: swap; }
-@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonSemiBold.otf") format("opentype"); font-weight: 600; font-style: normal; font-display: swap; }
-@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonBold.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonExtraBold.otf") format("opentype"); font-weight: 800; font-style: normal; font-display: swap; }
-@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonBlack.otf") format("opentype"); font-weight: 900; font-style: normal; font-display: swap; }
-
-/* ===== Pottred Font (Display) ===== */
-@font-face { font-family: "Pottred"; src: url("/fonts/pottred/Pottred.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
 
 :root {
-  --bg-primary: #A8131E;
-  --bg-secondary: #8a1018;
+  --bg-primary: #075629;
+  --bg-secondary: #054d23;
   --bg-card: rgba(0, 0, 0, 0.25);
   --border: rgba(255, 255, 255, 0.12);
   --border-glow: rgba(255, 255, 255, 0.3);
@@ -24,11 +13,11 @@
   --accent: #F2F2F2;
   --accent-light: #FFFFFF;
   --accent-glow: rgba(255, 255, 255, 0.15);
-  --gold: #fcd34d;
-  --gold-light: #fde68a;
-  --gold-glow: rgba(252, 211, 77, 0.2);
-  --green: #6aa84f;
-  --red-dark: #A8131E;
+  --gold: #26A231;
+  --gold-light: #E1FFE3;
+  --gold-glow: rgba(38, 162, 49, 0.2);
+  --green: #26A231;
+  --red-dark: #075629;
 }
 
 * {
@@ -42,7 +31,7 @@ html {
 }
 
 body {
-  font-family: "Campton", system-ui, sans-serif;
+  font-family: "Poppins", system-ui, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
@@ -51,14 +40,14 @@ body {
 }
 
 .font-pottred {
-  font-family: "Pottred", serif;
+  font-family: "Playfair Display", serif;
 }
 
 /* ===================== GRADIENTS & GLOWS ===================== */
 .bg-radial-red {
   background: radial-gradient(
     ellipse 80% 60% at 50% -10%,
-    rgba(168, 19, 30, 0.5) 0%,
+    rgba(7, 86, 41, 0.5) 0%,
     transparent 70%
   );
 }
@@ -66,7 +55,7 @@ body {
 .bg-radial-coffee {
   background: radial-gradient(
     ellipse 80% 60% at 50% -10%,
-    rgba(168, 19, 30, 0.5) 0%,
+    rgba(7, 86, 41, 0.5) 0%,
     transparent 70%
   );
 }
@@ -74,7 +63,7 @@ body {
 .bg-radial-purple {
   background: radial-gradient(
     ellipse 80% 60% at 50% -10%,
-    rgba(168, 19, 30, 0.5) 0%,
+    rgba(7, 86, 41, 0.5) 0%,
     transparent 70%
   );
 }
@@ -82,29 +71,29 @@ body {
 .bg-radial-gold {
   background: radial-gradient(
     ellipse 80% 60% at 50% -10%,
-    rgba(252, 211, 77, 0.2) 0%,
+    rgba(38, 162, 49, 0.2) 0%,
     transparent 70%
   );
 }
 
 .glow-red {
-  box-shadow: 0 0 40px rgba(181, 18, 27, 0.5), 0 0 80px rgba(181, 18, 27, 0.2);
+  box-shadow: 0 0 40px rgba(7, 86, 41, 0.5), 0 0 80px rgba(7, 86, 41, 0.2);
 }
 
 .glow-coffee {
-  box-shadow: 0 0 40px rgba(181, 18, 27, 0.5), 0 0 80px rgba(181, 18, 27, 0.2);
+  box-shadow: 0 0 40px rgba(7, 86, 41, 0.5), 0 0 80px rgba(7, 86, 41, 0.2);
 }
 
 .glow-purple {
-  box-shadow: 0 0 40px rgba(181, 18, 27, 0.5), 0 0 80px rgba(181, 18, 27, 0.2);
+  box-shadow: 0 0 40px rgba(7, 86, 41, 0.5), 0 0 80px rgba(7, 86, 41, 0.2);
 }
 
 .glow-gold {
-  box-shadow: 0 0 40px rgba(252, 211, 77, 0.45), 0 0 80px rgba(252, 211, 77, 0.18);
+  box-shadow: 0 0 40px rgba(38, 162, 49, 0.45), 0 0 80px rgba(38, 162, 49, 0.18);
 }
 
 .text-glow-gold {
-  text-shadow: 0 0 30px rgba(252, 211, 77, 0.65);
+  text-shadow: 0 0 30px rgba(38, 162, 49, 0.65);
 }
 
 .text-glow-coffee {
@@ -190,7 +179,7 @@ body {
   border-radius: 0.75rem;
   color: var(--text-primary);
   font-size: 1rem;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: all 0.2s ease;
   outline: none;
 }
@@ -212,8 +201,8 @@ body {
   font-weight: 700;
   letter-spacing: 0.3em;
   color: var(--gold-light);
-  background: rgba(252, 211, 77, 0.1);
-  border: 2px solid rgba(252, 211, 77, 0.35);
+  background: rgba(38, 162, 49, 0.1);
+  border: 2px solid rgba(38, 162, 49, 0.35);
   border-radius: 0.75rem;
   padding: 1rem 1.5rem;
   text-align: center;
@@ -245,8 +234,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(252, 211, 77, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(252, 211, 77, 0.65), 0 0 80px rgba(252, 211, 77, 0.2); }
+  0%, 100% { box-shadow: 0 0 20px rgba(38, 162, 49, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(38, 162, 49, 0.65), 0 0 80px rgba(38, 162, 49, 0.2); }
 }
 
 @keyframes float {

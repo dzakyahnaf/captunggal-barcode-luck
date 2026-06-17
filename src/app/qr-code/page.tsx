@@ -3,12 +3,12 @@ import QRCode from 'react-qr-code';
 
 export default function QRCodeGenerator() {
   // Masukkan link yang ingin diubah menjadi QR Code
-  const qrData = "http://rakkencoffee.com/";
+  const qrData = "https://www.captunggal.com/";
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
       <h2 style={{ marginBottom: '20px', fontSize: '24px', fontWeight: 'bold' }}>
-        Scan untuk ke Rakken Coffee
+        Scan untuk ke Cap Tunggal
       </h2>
       
       {/* Container QR Code dengan background putih agar selalu bisa di-scan meskipun di dark mode */}

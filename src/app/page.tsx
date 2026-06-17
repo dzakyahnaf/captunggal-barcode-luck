@@ -70,7 +70,9 @@ export default function HomePage() {
       if (data.won && data.code) {
         window.location.href = `/result?won=true&code=${data.code}&scanOrder=${data.scanOrder || ""}`;
       } else {
-        window.location.href = `/result?won=false&redirect=${encodeURIComponent(data.redirectUrl || "https://instagram.com/rakkencoffee")}&scanOrder=${data.scanOrder || ""}`;
+        // API already returns a full path like /result?won=false&redirect=..., just append scanOrder
+        const url = data.redirectUrl || `/result?won=false&redirect=${encodeURIComponent("https://www.instagram.com/captunggal/")}`;
+        window.location.href = `${url}&scanOrder=${data.scanOrder || ""}`;
       }
     } catch {
       setError("Koneksi gagal. Periksa internet dan coba lagi.");
@@ -87,11 +89,7 @@ export default function HomePage() {
     <main
       className="relative h-[100dvh] w-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
       style={{
-        backgroundImage: "url('/images/bg-2.webp')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "#7a0e15",
+        background: "linear-gradient(160deg, #075629 0%, #054d23 40%, #043d1c 70%, #075629 100%)",
         scrollBehavior: "smooth",
       }}
     >
@@ -112,14 +110,14 @@ export default function HomePage() {
         className="fixed top-1/4 -left-20 w-72 h-72 rounded-full blur-3xl pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(200,30,40,0.35), transparent)",
+            "radial-gradient(circle, rgba(7,86,41,0.45), transparent)",
         }}
       />
       <div
         className="fixed bottom-1/4 -right-20 w-80 h-80 rounded-full blur-3xl pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(168,19,30,0.3), transparent)",
+            "radial-gradient(circle, rgba(38,162,49,0.3), transparent)",
         }}
       />
 
@@ -140,10 +138,10 @@ export default function HomePage() {
           {/* ===== LOGO ===== */}
           <div style={{ marginBottom: "0.25rem" }}>
             <Image
-              src="/images/logo-rakken.png"
-              alt="Rakken Coffee"
-              width={340}
-              height={340}
+              src="/images/logo-cap-tunggal.png"
+              alt="Cap Tunggal"
+              width={120}
+              height={120}
               priority
               style={{ objectFit: "contain" }}
             />
@@ -160,7 +158,7 @@ export default function HomePage() {
                 marginBottom: "0.25rem",
               }}
             >
-              Your New Everyday Ritual <br /> in Sips and Bites
+              Minyak Gosok Tradisional <br /> Warisan Indonesia
             </p>
             {scanCount !== null && scanCount > 0 && (
               <p
@@ -168,7 +166,7 @@ export default function HomePage() {
                   color: "#FFFFFF",
                   fontSize: "1.35rem",
                   fontWeight: 700,
-                  textShadow: "0 0 10px rgba(252,211,77,0.3)",
+                  textShadow: "0 0 10px rgba(38,162,49,0.3)",
                   margin: "2.5rem 0 4rem",
                 }}
               >
@@ -191,9 +189,9 @@ export default function HomePage() {
                   fontWeight: 700,
                 }}
               >
-                KOPI GRATIS
+                HADIAH MENARIK
               </span>{" "}
-              Selama 1 Tahun!
+              dari Cap Tunggal!
             </p>
           </div>
 
@@ -230,13 +228,13 @@ export default function HomePage() {
             >
               <li>
                 Follow Instagram{" "}
-                <strong style={{ color: "#1a1a1a" }}>@rakkencoffee</strong>{" "}
+                <strong style={{ color: "#1a1a1a" }}>@captunggal</strong>{" "}
               </li>
               <li>
                 Masukkan nama lengkap, username Instagram dan nomor WhatsApp
                 aktif untuk ikut berpartisipasi.
               </li>
-              <li>Tunggu pengumuman pemenang di Instagram @rakkencoffee.</li>
+              <li>Tunggu pengumuman pemenang di Instagram @captunggal.</li>
             </ol>
           </div>
 
@@ -322,7 +320,7 @@ export default function HomePage() {
                     textShadow: "0 0 20px rgba(255,255,255,0.4)",
                   }}
                 >
-                  KOPI GRATIS Setahun Menunggu.
+                  HADIAH MENARIK Menunggu.
                 </span>
               </>
             )}
@@ -344,7 +342,7 @@ export default function HomePage() {
               <>
                 {/* Instagram CTA */}
                 <a
-                  href="https://instagram.com/rakkencoffee"
+                  href="https://www.instagram.com/captunggal/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover-scale"
@@ -368,7 +366,7 @@ export default function HomePage() {
                   }}
                 >
                   <Instagram size={20} />
-                  <span>Follow @rakkencoffee</span>
+                  <span>Follow @captunggal</span>
                 </a>
 
                 {/* Input section wrapper */}
@@ -440,7 +438,7 @@ export default function HomePage() {
                       id="instagram-input"
                       type="text"
                       className="input-field"
-                      placeholder="Contoh: @rakkencoffee"
+                      placeholder="Contoh: @captunggal"
                       value={instagram}
                       onChange={(e) => {
                         setInstagram(e.target.value);
@@ -527,7 +525,7 @@ export default function HomePage() {
                     fontSize: "1rem",
                     fontWeight: 800,
                     background: "#FFFFFF",
-                    color: "#A8131E",
+                    color: "#075629",
                     cursor: isLoading ? "not-allowed" : "pointer",
                     opacity:
                       !phone.trim() ||
@@ -549,7 +547,7 @@ export default function HomePage() {
                           width: "1.25rem",
                           height: "1.25rem",
                           borderWidth: "2px",
-                          borderColor: "#A8131E",
+                          borderColor: "#075629",
                           borderRightColor: "transparent",
                         }}
                       />
@@ -623,12 +621,12 @@ function AlreadyPlayedState() {
           }}
         >
           Pantengin terus Instagram{" "}
-          <strong style={{ color: "#FFFFFF" }}>@rakkencoffee</strong> , pemenang
+          <strong style={{ color: "#FFFFFF" }}>@captunggal</strong> , pemenang
           akan diundi 1 minggu sebelum Grand Opening{" "}
         </p>
       </div>
       <a
-        href="https://instagram.com/rakkencoffee"
+        href="https://www.instagram.com/captunggal/"
         target="_blank"
         rel="noopener noreferrer"
         className="hover-scale"
@@ -648,7 +646,7 @@ function AlreadyPlayedState() {
         }}
       >
         <Instagram size={16} />
-        <span>Follow @rakkencoffee</span>
+        <span>Follow @captunggal</span>
       </a>
     </div>
   );

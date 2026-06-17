@@ -14,7 +14,7 @@ function ResultContent() {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          window.location.href = "https://instagram.com/rakkencoffee";
+          window.location.href = "https://www.instagram.com/captunggal/";
           return 0;
         }
         return prev - 1;
@@ -28,11 +28,7 @@ function ResultContent() {
     <main
       className="relative min-h-[100dvh] overflow-x-hidden flex flex-col items-center justify-center p-6"
       style={{
-        backgroundImage: "url('/images/bg-2.webp')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "#7a0e15",
+        background: "linear-gradient(160deg, #075629 0%, #054d23 40%, #043d1c 70%, #075629 100%)",
       }}
     >
       {/* Background texture */}
@@ -50,14 +46,14 @@ function ResultContent() {
         className="absolute top-0 -left-20 w-64 h-64 rounded-full blur-3xl opacity-50 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(200,30,40,0.4), transparent)",
+            "radial-gradient(circle, rgba(7,86,41,0.5), transparent)",
         }}
       />
       <div
         className="absolute bottom-0 -right-20 w-64 h-64 rounded-full blur-3xl opacity-50 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(168,19,30,0.35), transparent)",
+            "radial-gradient(circle, rgba(38,162,49,0.4), transparent)",
         }}
       />
 
@@ -183,7 +179,7 @@ function ResultContent() {
                   lineHeight: 1.2,
                 }}
               >
-                Ratusan Merchandise RAKKEN
+                Ratusan Merchandise CAP TUNGGAL
               </p>
               {/* <p
                 style={{
@@ -192,7 +188,7 @@ function ResultContent() {
                   marginTop: "0.125rem",
                 }}
               >
-                Exclusive Rakken merchandise
+                Exclusive Cap Tunggal merchandise
               </p> */}
             </div>
           </div>
@@ -228,7 +224,7 @@ function ResultContent() {
                   lineHeight: 1.2,
                 }}
               >
-                Voucher Eksklusif RAKKEN
+                Voucher Eksklusif CAP TUNGGAL
               </p>
               {/* <p
                 style={{
@@ -275,14 +271,14 @@ function ResultContent() {
             }}
           >
             Pantengin terus Instagram{" "}
-            <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> ,
+            <strong style={{ color: "#F2F2F2" }}>@captunggal</strong> ,
             pemenang akan diundi 1 minggu sebelum Grand Opening
           </p>
         </div>
 
         {/* Action Button */}
         <a
-          href="https://instagram.com/rakkencoffee"
+          href="https://www.instagram.com/captunggal/"
           style={{
             display: "flex",
             alignItems: "center",
@@ -294,7 +290,7 @@ function ResultContent() {
             fontSize: "0.95rem",
             fontWeight: 800,
             background: "#FFFFFF",
-            color: "#A8131E",
+            color: "#075629",
             boxShadow: "0 4px 15px rgba(255,255,255,0.25)",
             textDecoration: "none",
             transition: "all 0.2s",

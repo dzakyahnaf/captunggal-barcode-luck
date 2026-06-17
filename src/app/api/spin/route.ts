@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
     } else {
       const redirectUrl =
         process.env.INSTAGRAM_REDIRECT_URL ||
-        "https://instagram.com/rakkencoffee";
+        "https://www.instagram.com/captunggal/";
 
       return NextResponse.json(
         {
