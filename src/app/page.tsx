@@ -4,6 +4,20 @@ import { useState, useRef, useEffect } from "react";
 import { Smartphone, ChevronRight, Instagram, ChevronDown } from "lucide-react";
 import Image from "next/image";
 
+const TiktokIcon = ({ size = 20 }: { size?: number }) => (
+  <svg 
+    stroke="currentColor" 
+    fill="currentColor" 
+    strokeWidth="0" 
+    viewBox="0 0 448 512" 
+    height={size} 
+    width={size} 
+    style={{ display: "inline-block", verticalAlign: "middle" }}
+  >
+    <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"></path>
+  </svg>
+);
+
 interface SpinResult {
   won: boolean;
   code?: string;
@@ -16,6 +30,7 @@ interface SpinResult {
 export default function HomePage() {
   const [name, setName] = useState("");
   const [instagram, setInstagram] = useState("");
+  const [tiktok, setTiktok] = useState("");
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -53,7 +68,7 @@ export default function HomePage() {
       const res = await fetch("/api/spin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, instagram, phone }),
+        body: JSON.stringify({ name, instagram, tiktok, phone }),
       });
 
       const data: SpinResult = await res.json();
@@ -189,9 +204,9 @@ export default function HomePage() {
                   fontWeight: 700,
                 }}
               >
-                HADIAH MENARIK
+                EMAS GRATIS
               </span>{" "}
-              dari Cap Tunggal!
+              dari Minyak Gosok Cap Tunggal!
             </p>
           </div>
 
@@ -228,13 +243,14 @@ export default function HomePage() {
             >
               <li>
                 Follow Instagram{" "}
-                <strong style={{ color: "#1a1a1a" }}>@captunggal</strong>{" "}
+                <strong style={{ color: "#1a1a1a" }}>@captunggal</strong> dan TikTok{" "}
+                <strong style={{ color: "#1a1a1a" }}>@minyakgosokcaptunggal</strong>
               </li>
               <li>
-                Masukkan nama lengkap, username Instagram dan nomor WhatsApp
+                Masukkan nama lengkap, username Instagram, username TikTok dan nomor WhatsApp
                 aktif untuk ikut berpartisipasi.
               </li>
-              <li>Tunggu pengumuman pemenang di Instagram @captunggal.</li>
+              <li>Tunggu pengumuman pemenang di Instagram @captunggal dan TikTok @minyakgosokcaptunggal.</li>
             </ol>
           </div>
 
@@ -312,7 +328,7 @@ export default function HomePage() {
               </>
             ) : (
               <>
-                Coba Keberuntunganmu
+                Coba Keberuntunganmu,
                 <br />
                 <span
                   style={{
@@ -320,7 +336,7 @@ export default function HomePage() {
                     textShadow: "0 0 20px rgba(255,255,255,0.4)",
                   }}
                 >
-                  HADIAH MENARIK Menunggu.
+                  EMAS GRATIS Menunggu!
                 </span>
               </>
             )}
@@ -340,34 +356,66 @@ export default function HomePage() {
               <AlreadyPlayedState />
             ) : (
               <>
-                {/* Instagram CTA */}
-                <a
-                  href="https://www.instagram.com/captunggal/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover-scale"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "0.625rem",
-                    width: "100%",
-                    padding: "1rem 1.5rem",
-                    borderRadius: "0.75rem",
-                    fontSize: "1rem",
-                    fontWeight: 700,
-                    background:
-                      "linear-gradient(135deg, #833ab4, #e1306c, #f56040)",
-                    color: "#fff",
-                    boxShadow: "0 4px 20px rgba(225,48,108,0.3)",
-                    textDecoration: "none",
-                    textAlign: "center",
-                    transition: "transform 0.2s",
-                  }}
-                >
-                  <Instagram size={20} />
-                  <span>Follow @captunggal</span>
-                </a>
+                {/* CTAs Wrapper */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", width: "100%" }}>
+                  {/* Instagram CTA */}
+                  <a
+                    href="https://www.instagram.com/captunggal/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover-scale"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "0.625rem",
+                      width: "100%",
+                      padding: "1rem 1.5rem",
+                      borderRadius: "0.75rem",
+                      fontSize: "1rem",
+                      fontWeight: 700,
+                      background:
+                        "linear-gradient(135deg, #833ab4, #e1306c, #f56040)",
+                      color: "#fff",
+                      boxShadow: "0 4px 20px rgba(225,48,108,0.3)",
+                      textDecoration: "none",
+                      textAlign: "center",
+                      transition: "transform 0.2s",
+                    }}
+                  >
+                    <Instagram size={20} />
+                    <span>Follow @captunggal</span>
+                  </a>
+
+                  {/* TikTok CTA */}
+                  <a
+                    href="https://www.tiktok.com/@minyakgosokcaptunggal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover-scale"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "0.625rem",
+                      width: "100%",
+                      padding: "1rem 1.5rem",
+                      borderRadius: "0.75rem",
+                      fontSize: "1rem",
+                      fontWeight: 700,
+                      background: "#000000",
+                      color: "#fff",
+                      border: "1px solid rgba(255, 255, 255, 0.2)",
+                      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 242, 234, 0.15), 0 0 10px rgba(254, 44, 85, 0.15)",
+                      textDecoration: "none",
+                      textAlign: "center",
+                      transition: "transform 0.2s",
+                    }}
+                  >
+                    <TiktokIcon size={20} />
+                    <span>Follow @minyakgosokcaptunggal</span>
+                  </a>
+                </div>
 
                 {/* Input section wrapper */}
                 <div
@@ -442,6 +490,42 @@ export default function HomePage() {
                       value={instagram}
                       onChange={(e) => {
                         setInstagram(e.target.value);
+                        if (error) setError("");
+                      }}
+                      disabled={isLoading}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  {/* TikTok username input */}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <label
+                      htmlFor="tiktok-input"
+                      style={{
+                        color: "#FFFFFF",
+                        fontSize: "0.875rem",
+                        fontWeight: 500,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                      }}
+                    >
+                      Username TikTok
+                    </label>
+                    <input
+                      id="tiktok-input"
+                      type="text"
+                      className="input-field"
+                      placeholder="Contoh: @minyakgosokcaptunggal"
+                      value={tiktok}
+                      onChange={(e) => {
+                        setTiktok(e.target.value);
                         if (error) setError("");
                       }}
                       disabled={isLoading}
