@@ -28,7 +28,11 @@ function ResultContent() {
     <main
       className="relative min-h-[100dvh] overflow-x-hidden flex flex-col items-center justify-center p-6"
       style={{
-        background: "linear-gradient(160deg, #075629 0%, #054d23 40%, #043d1c 70%, #075629 100%)",
+        backgroundImage: "url('/images/bg-captung.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#075629",
       }}
     >
       {/* Background texture */}

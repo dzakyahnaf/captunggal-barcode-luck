@@ -104,7 +104,11 @@ export default function HomePage() {
     <main
       className="relative h-[100dvh] w-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
       style={{
-        background: "linear-gradient(160deg, #075629 0%, #054d23 40%, #043d1c 70%, #075629 100%)",
+        backgroundImage: "url('/images/bg-captung.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#075629",
         scrollBehavior: "smooth",
       }}
     >
