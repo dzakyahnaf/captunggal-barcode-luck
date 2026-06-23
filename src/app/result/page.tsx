@@ -2,7 +2,8 @@
 
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Instagram, Coffee, Gift, Ticket, ChevronRight } from "lucide-react";
+import { Instagram, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 function ResultContent() {
   const searchParams = useSearchParams();
@@ -105,142 +106,29 @@ function ResultContent() {
           </p>
         </div>
 
-        {/* Prizes Card */}
+        {/* Prizes Card (Replaced with Sticker Image) */}
         <div
-          className="glass-card-strong w-full"
           style={{
-            padding: "1rem 1.25rem",
+            width: "100%",
             display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "0.5rem",
           }}
         >
-          <div
-            style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}
-          >
-            <div
-              style={{
-                background: "rgba(255,255,255,0.1)",
-                color: "#F2F2F2",
-                padding: "0.4rem",
-                borderRadius: "0.5rem",
-                border: "1px solid rgba(255,255,255,0.15)",
-              }}
-            >
-              <Coffee size={20} />
-            </div>
-            <div>
-              <p
-                style={{
-                  color: "#F2F2F2",
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                  lineHeight: 1.2,
-                }}
-              >
-                Menangkan EMAS GRATIS
-              </p>
-              {/* <p
-                style={{
-                  color: "rgba(255,255,255,0.6)",
-                  fontSize: "0.75rem",
-                  marginTop: "0.125rem",
-                }}
-              >
-                Enjoy your everyday ritual with us
-              </p> */}
-            </div>
-          </div>
-
-          <div
+          <Image
+            src="/images/sticker-captunggal.webp"
+            alt="Hadiah Cap Tunggal"
+            width={380}
+            height={380}
+            priority
             style={{
-              height: "1px",
-              background: "rgba(255,255,255,0.1)",
               width: "100%",
+              height: "auto",
+              objectFit: "contain",
+              borderRadius: "1rem",
             }}
           />
-
-          <div
-            style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}
-          >
-            <div
-              style={{
-                background: "rgba(255,255,255,0.1)",
-                color: "#F2F2F2",
-                padding: "0.4rem",
-                borderRadius: "0.5rem",
-                border: "1px solid rgba(255,255,255,0.15)",
-              }}
-            >
-              <Gift size={20} />
-            </div>
-            <div>
-              <p
-                style={{
-                  color: "#F2F2F2",
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                  lineHeight: 1.2,
-                }}
-              >
-                Ratusan Merchandise CAP TUNGGAL
-              </p>
-              {/* <p
-                style={{
-                  color: "rgba(255,255,255,0.6)",
-                  fontSize: "0.75rem",
-                  marginTop: "0.125rem",
-                }}
-              >
-                Exclusive Cap Tunggal merchandise
-              </p> */}
-            </div>
-          </div>
-
-          <div
-            style={{
-              height: "1px",
-              background: "rgba(255,255,255,0.1)",
-              width: "100%",
-            }}
-          />
-
-          <div
-            style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}
-          >
-            <div
-              style={{
-                background: "rgba(255,255,255,0.1)",
-                color: "#F2F2F2",
-                padding: "0.4rem",
-                borderRadius: "0.5rem",
-                border: "1px solid rgba(255,255,255,0.15)",
-              }}
-            >
-              <Ticket size={20} />
-            </div>
-            <div>
-              <p
-                style={{
-                  color: "#F2F2F2",
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                  lineHeight: 1.2,
-                }}
-              >
-                Voucher Eksklusif CAP TUNGGAL
-              </p>
-              {/* <p
-                style={{
-                  color: "rgba(255,255,255,0.6)",
-                  fontSize: "0.75rem",
-                  marginTop: "0.125rem",
-                }}
-              >
-                Special discount for your next visit
-              </p> */}
-            </div>
-          </div>
         </div>
 
         {/* Syarat dan Ketentuan */}
@@ -274,9 +162,8 @@ function ResultContent() {
               lineHeight: 1.5,
             }}
           >
-            Pantengin terus Instagram{" "}
-            <strong style={{ color: "#F2F2F2" }}>@captunggal</strong> ,
-            pemenang akan diundi 1 minggu sebelum Grand Opening
+            Pantengin Instagram{" "}
+            <strong style={{ color: "#F2F2F2" }}>@captunggal</strong> untuk pengumuman pemenang!
           </p>
         </div>
 
