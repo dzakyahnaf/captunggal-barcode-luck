@@ -27,7 +27,7 @@ function ResultContent() {
 
   return (
     <main
-      className="relative min-h-[100dvh] overflow-x-hidden flex flex-col items-center justify-center p-6"
+      className="relative min-h-[100dvh] overflow-x-hidden flex flex-col items-center justify-center px-9 py-6"
       style={{
         backgroundImage: "url('/images/bg-captung.webp')",
         backgroundSize: "cover",
@@ -97,11 +97,20 @@ function ResultContent() {
               fontSize: "3.0rem",
               lineHeight: 1.1,
               textShadow: "0 2px 10px rgba(0,0,0,0.2)",
+              margin: 0,
             }}
           >
             Berhasil Terdaftar!
           </h1>
-          <p className="font-heading" style={{ color: "rgba(255,255,255,0.8)", fontSize: "2.0rem" }}>
+          <p
+            className="font-heading"
+            style={{
+              color: "rgba(255,255,255,0.8)",
+              fontSize: "2.0rem",
+              lineHeight: 1.15,
+              margin: 0,
+            }}
+          >
             Hadiah yang bisa kamu dapatkan:
           </p>
         </div>
